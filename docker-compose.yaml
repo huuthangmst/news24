@@ -1,0 +1,79 @@
+version: '3.8'
+services:
+
+  app:
+    build:  # nơi xác định tệp dockerfile mà sẽ sử dụng
+      context: .  # thư mục ở gốc hiện tại
+      dockerfile: app.dockerfile  # file dockerfile của app
+    working_dir: /var/www   # đây là thư mục làm việc của vùng chứa
+    volumes:  # những gì đang gắn vào vùng chứa, đó là tệp or thư mục mà liên kết
+      - ./:/var/www # trong trường hợp này, gắn thư mục docker-compos.yaml nằm trong thư mục container /var/www 
+    depends_on: # điều kiện xác định phụ thuộc, cái nào chạy trước
+      - "database"
+    networks:
+      - app-network
+
+  web:
+    build:  # nói với compose là có một tệp docker được đặt tên là web.dockerfilenằm trong thư mục hiện tại (ngữ cảnh là ./).
+      context: .
+      dockerfile: web.dockerfile
+    working_dir: /var/www # Thư mục làm việc vùng chứa của chúng tôi là thư mục /var/www.
+    volumes:
+      - ./:/var/www   # Đếm nội dung thư mục dự án vào thư mục container /var/www.
+    depends_on: 
+      - "app"
+      - "database"
+    ports:
+      - 8088:80 # cổng container chạy: cổng web chạy
+    networks:
+      - app-network
+
+  database:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql # Đây là một volumes mà có thể sử dụng để duy trì dữ liệu cơ sở dữ liệu trên phiên bản docker. Có thể tiếp tục nơi đã dừng lại với cơ sở dữ liệu ở trạng thái trước đó.
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    ports:
+      - "4306:3306"
+    networks:
+      - app-network
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${DB_HOST}
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
+      - PMA_PORT=${DB_PORT}
+    ports:
+      - 3500:80
+    depends_on: # Muốn đợi cơ sở dữ liệu ở trạng thái đang chạy trước khi GUI của chúng tôi quay lên
+      - database
+    networks:
+      - app-network
+
+  npm:
+    image: node:current-alpine
+    container_name: npm
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/www
+    # user: node
+    # entrypoint: ["npm"]
+    networks:
+      - app-network
+
+volumes:
+    dbdata:
+
+networks:
+  app-network:
+      driver: bridge

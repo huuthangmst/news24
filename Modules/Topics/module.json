@@ -1,0 +1,11 @@
+{
+    "name": "Topics",
+    "alias": "topics",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Topics\\Providers\\TopicsServiceProvider"
+    ],
+    "files": []
+}
