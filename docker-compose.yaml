@@ -57,20 +57,6 @@ services:
     networks:
       - app-network
 
-  npm:
-    image: node:current-alpine
-    container_name: npm
-    restart: unless-stopped
-    tty: true
-    ports:
-      - 3000:3000
-    volumes:
-      - ./:/var/www
-    # user: node
-    # entrypoint: ["npm"]
-    networks:
-      - app-network
-
 volumes:
     dbdata:
 
