@@ -33,10 +33,10 @@ services:
     volumes:
       - dbdata:/var/lib/mysql # Đây là một volumes mà có thể sử dụng để duy trì dữ liệu cơ sở dữ liệu trên phiên bản docker. Có thể tiếp tục nơi đã dừng lại với cơ sở dữ liệu ở trạng thái trước đó.
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_DATABASE: news
+      MYSQL_ROOT_PASSWORD: laravel-password
+      MYSQL_PASSWORD: laravel-password
+      MYSQL_USER: laravel-password
     ports:
       - "4306:3306"
     networks:
@@ -46,10 +46,10 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=${DB_HOST}
-      - PMA_USER=${DB_USERNAME}
-      - PMA_PASSWORD=${DB_PASSWORD}
-      - PMA_PORT=${DB_PORT}
+      - PMA_HOST=database
+      - PMA_USER=laravel-user
+      - PMA_PASSWORD=laravel-password
+      - PMA_PORT=3306
     ports:
       - 3500:80
     depends_on: # Muốn đợi cơ sở dữ liệu ở trạng thái đang chạy trước khi GUI của chúng tôi quay lên
