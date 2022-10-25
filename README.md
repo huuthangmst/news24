@@ -67,4 +67,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 2, cp .env.example .env <br/>
 3, docker-compose up -d <br/>
 4, docker-compose exec app composer install <br/>
-5, chown -R www-data:www-data /var/www <br/>
+5, docker-compose exec app chown -R www-data:www-data /var/www <br/>
