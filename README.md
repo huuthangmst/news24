@@ -63,7 +63,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 ## RUN PROJECT WITH DOCKER
-1, clone project in git
+1, clone project in git <br/>
 2, cp .env.example .env <br/>
 3, docker-compose up -d <br/>
 4, docker-compose exec app composer install <br/>
