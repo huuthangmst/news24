@@ -4,7 +4,7 @@ services:
   app:
     build:  # nơi xác định tệp dockerfile mà sẽ sử dụng
       args:
-        user: thang
+        user: www
         uid: 1000
       context: .  # thư mục ở gốc hiện tại
       dockerfile: app.dockerfile  # file dockerfile của app
