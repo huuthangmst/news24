@@ -1,0 +1,11 @@
+{
+    "name": "NewAPI",
+    "alias": "newapi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\NewAPI\\Providers\\NewAPIServiceProvider"
+    ],
+    "files": []
+}

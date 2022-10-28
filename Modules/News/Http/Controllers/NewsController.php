@@ -2,6 +2,7 @@
 
 namespace Modules\News\Http\Controllers;
 
+use App\Models\ApiKeys;
 use App\Models\Categories;
 use App\Models\Comments;
 use App\Models\Posts;
@@ -11,6 +12,7 @@ use App\Models\Topics;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Modules\News\Http\Requests\CommentRequest;
 
@@ -64,6 +66,18 @@ class NewsController extends Controller
         $data_content = json_decode($this->categories->with('postss')->with('topics')->get());
         //dd($data_content);
 
+        //
+        if(Auth::check()){
+            $api_key = md5(Auth::id());
+            $data = [
+                'apiKey'=>$api_key,
+                'user_id'=>Auth::id()
+            ];
+            // dd(md5(1));
+            
+            ApiKeys::firstOrCreate($data);
+        }
+
         // get 50 post
         $posts_50data = json_decode($this->posts->with('post_view')->where('enable', 1)->skip(0)->take(10)->get());
         return view('news::index', compact(
@@ -75,6 +89,7 @@ class NewsController extends Controller
             'data_content',
             'posts_50data'
         ));
+
     }
 
 
@@ -122,7 +137,7 @@ class NewsController extends Controller
         //dd($post); */
 
         //count views with ip
-        $ip_client = '45.225.123.24';
+        $ip_client = $_SERVER['REMOTE_ADDR'];
         $post_id = json_decode($this->posts->where('slug', $slug)->first()->id);
         $ip_data = geoip()->getLocation($ip_client);
 

@@ -49,6 +49,10 @@ Route::prefix('/auth')->group(function () {
     // ROUTE guest
     Route::prefix('guest')->group(function () {
     });
+
+    // ROUTE NEWS API
+    Route::prefix('newapi')->group(function () {
+    });
 });
 
 

@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-5">
                             <div class="header-banner f-right ">
-                                <img src="assets/img/hero/header_card.jpg" alt="">
+                                <img src="" alt="">
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4">

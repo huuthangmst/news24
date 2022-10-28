@@ -4,5 +4,6 @@
     "Posts": true,
     "News": true,
     "Home": true,
-    "Guest": true
+    "Guest": true,
+    "NewAPI": true
 }

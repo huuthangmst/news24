@@ -10,6 +10,7 @@ class Topics extends Model
     use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
     use HasFactory;
     protected $guarded = [];
+    protected $hidden = ['created_at', 'updated_at', 'enable'];
 
     // Mối quan hệ một nhiều giữa topic và categories
     public function categories(){

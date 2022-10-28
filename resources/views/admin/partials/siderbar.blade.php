@@ -73,6 +73,12 @@
             </li>
 
             <li>
+                <a href="{{route('newapi.index')}}" class='nav-link'>
+                    <i class="fa fa-key"></i> News API </span>
+                </a>   
+            </li>
+
+            <li>
                 <a>
                     <i class="fa fa-users"></i> Users </span>
                 </a>   

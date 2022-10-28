@@ -10,6 +10,7 @@ class Categories extends Model
     use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
     use HasFactory;
     protected $guarded = [];
+    protected $hidden = ['created_at', 'updated_at', 'enable'];
 
     public function posts(){
         return $this->hasManyThrough('Posts', 'Topics');
