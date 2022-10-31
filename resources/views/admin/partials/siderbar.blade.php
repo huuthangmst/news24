@@ -79,7 +79,7 @@
             </li>
 
             <li>
-                <a>
+                <a href="{{route('users.index')}}" class='nav-link'>
                     <i class="fa fa-users"></i> Users </span>
                 </a>   
             </li>

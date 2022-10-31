@@ -53,6 +53,10 @@ Route::prefix('/auth')->group(function () {
     // ROUTE NEWS API
     Route::prefix('newapi')->group(function () {
     });
+
+    // ROUTE NEWS API
+    Route::prefix('users')->group(function () {
+    });
 });
 
 
