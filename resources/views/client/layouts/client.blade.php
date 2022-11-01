@@ -35,6 +35,72 @@
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/style.css') }}">
     {{-- rating --}}
+    <style>
+        .zoom {
+            transition: transform .2s; /* Animation */
+        }
+        .zoom:hover {
+            transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+        a:visited {color:#00000;}
+        a:hover {color:#ff0000;}
+        .text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+                    line-clamp: 3; 
+            -webkit-box-orient: vertical;
+        }
+        .hover15 figure {
+            position: relative;
+        }
+        .hover15 figure::before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            display: block;
+            content: '';
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,.2);
+            border-radius: 100%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        .hover15 figure:hover::before {
+            -webkit-animation: circle .75s;
+            animation: circle .75s;
+        }
+        @-webkit-keyframes circle {
+            0% {
+                opacity: 1;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                width: 200%;
+                height: 200%;
+                opacity: 0;
+            }
+        }
+        @keyframes circle {
+            0% {
+                opacity: 1;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                width: 200%;
+                height: 200%;
+                opacity: 0;
+            }
+        }
+    </style>
     
 
 </head>
@@ -150,6 +216,16 @@
             }
             
         }
+    </script>
+    
+    {{-- ajax --}}
+    <script>
+        $.get(
+            "news.detail",
+            function (data) {
+                $("#my-content-div").html(data);
+            }
+        );
     </script>
 
 </body>

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
-<main>
+<main id="my-content-div">
     <style>
         .checked {
             color: orange;
@@ -57,6 +57,11 @@
             content: '\f006';
             font-family: FontAwesome;
         }
+        img {
+            width: %;
+            height: auto;
+        }
+        
 
     </style>
     <!-- About US Start -->
@@ -84,7 +89,7 @@
                         <div class="about-img">
                             <img src="{{ $detail->feature_image_path }}" alt="">
                         </div>
-                        <div class="about-prea about-img">
+                        <div class="about-img about-prea">
                             {!! $detail->content !!}
                         </div>
 
@@ -334,8 +339,8 @@
                             @foreach ($posts_data as $post)
                             <div class="trand-right-single d-flex">
                                 <div class="trand-right-img">
-                                    <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><img height="100"
-                                            width="100" src="{{$post->feature_image_path}}" alt=""></a>
+                                    <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><img class="zoom" height="100"
+                                            width="130" src="{{$post->feature_image_path}}" alt=""></a>
                                 </div><span>&emsp;</span>
                                 <div class="trand-right-cap">
                                     <span class="text-danger">News</span>

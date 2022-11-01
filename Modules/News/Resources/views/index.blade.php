@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
+                                        <div class="zoom trend-bottom-img mb-30">
                                             <a href="{{ route('news.detail', ['slug'=>$tech->slug])}}"><img src="{{$tech->feature_image_path}}" alt=""></a>
                                         </div>
                                         <div class="trend-bottom-cap">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
+                                        <div class="zoom trend-bottom-img mb-30">
                                             <a href="{{ route('news.detail', ['slug'=>$ent->slug])}}"><img src="{{$ent->feature_image_path}}" alt=""></a>
                                         </div>
                                         <div class="trend-bottom-cap">
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
+                                        <div class="zoom trend-bottom-img mb-30">
                                             <a href="{{ route('news.detail', ['slug'=>$new->slug])}}"><img src="{{$new->feature_image_path}}" alt=""></a>
                                         </div>
                                         <div class="trend-bottom-cap">
@@ -91,7 +91,7 @@
                         @foreach ($posts_data as $post)
                             <div class="trand-right-single d-flex">
                                 <div class="trand-right-img">
-                                    <img height="100" width="100" src="{{$post->feature_image_path}}" alt="">
+                                    <img class="zoom" height="100" width="150" src="{{$post->feature_image_path}}" alt="">
                                 </div>
                                 <div class="trand-right-cap">
                                     <span class="text-danger">News</span><i class="	fas fa-eye text-secondary"> {{ count($post->post_view) }}</i>
@@ -181,11 +181,11 @@
                                             @foreach ($da->postss as $po)
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="single-what-news mb-100">
-                                                        <div class="">
-                                                            <img width="300px" height="200px" src="{{ $po->feature_image_path }}" alt="">
+                                                        <div class="hover15">
+                                                            <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><figure><img width="300px" height="200px" src="{{ $po->feature_image_path }}" alt=""></figure></a>
                                                         </div>
                                                         <div class="what-cap">
-                                                            <h4><a href="#">{{ $po->title }}</a>
+                                                            <h4><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{ $po->title }}</a>
                                                             </h4>
                                                         </div>
                                                     </div>
@@ -204,13 +204,13 @@
                 <div class="col-lg-4">
                     @foreach ($posts_50data as $f)
                     <div class="section-top-border">
-                        <h6 class="mb-30">{{ $f->title }}</h6>
+                        <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><h6 class="mb-30">{{ $f->title }}</h6></a>
                         <div class="row">
-                            <div class="col-md-5">
-                                <img src="{{ $f->feature_image_path }}" alt="" class="img-fluid">
+                            <div class="zoom col-md-5">
+                                <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><img src="{{ $f->feature_image_path }}" alt="" class="img-fluid"></a>
                             </div>
                             <div class="col-md-7 mt-sm-20r">
-                                <p class="text-dark">{{ $f->description }}</p>
+                                <p class="text text-dark">{{ $f->description }}</p>
                             </div>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>Weekly Top News</h3>
+                            <h3>Weekly News</h3>
                         </div>
                     </div>
                 </div>

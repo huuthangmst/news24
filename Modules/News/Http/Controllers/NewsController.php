@@ -15,6 +15,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Modules\News\Http\Requests\CommentRequest;
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
@@ -80,6 +81,15 @@ class NewsController extends Controller
 
         // get 50 post
         $posts_50data = json_decode($this->posts->with('post_view')->where('enable', 1)->skip(0)->take(10)->get());
+
+        // week
+        $now = Carbon::now();
+
+        $post_week= json_decode($this->posts->whereBetween("created_at", [
+        $now->startOfWeek()->format('Y-m-d'), //This will return date in format like this: 2022-01-10
+        $now->endOfWeek()->format('Y-m-d')
+        ])->get());
+        
         return view('news::index', compact(
             'posts_data',
             'first_post',
@@ -87,7 +97,8 @@ class NewsController extends Controller
             'ent',
             'new',
             'data_content',
-            'posts_50data'
+            'posts_50data',
+            'post_week'
         ));
 
     }
