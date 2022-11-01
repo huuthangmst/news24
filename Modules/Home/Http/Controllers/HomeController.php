@@ -3,8 +3,10 @@
 namespace Modules\Home\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Posts;
 use App\Models\PostViews;
 use App\Models\Topics;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -111,6 +113,27 @@ class HomeController extends Controller
         //     $a = ($v->post_view);
         //     dd($a);
         // }
+
+        // count total users
+        $total_users = json_decode(User::count());
+        // count total posts
+        $total_posts = json_decode(Posts::count());
+
+        // top user have a lot of post
+        $top_user = json_decode(
+            User::withCount('post_list')
+            ->selectRaw('name as coun')
+            // ->groupBy('post_list')
+            ->orderBy('post_list_count', 'DESC')
+            ->get()->take(5));
+
+        // top view post
+        $top_view_post = json_decode(
+            Posts::withCount('post_view')
+            ->selectRaw('title as coun')
+            // ->groupBy('post_list')
+            ->orderBy('post_view_count', 'DESC')
+            ->get()->take(5));
         
 
         return view('home::index', compact(
@@ -120,7 +143,11 @@ class HomeController extends Controller
             'view_today',
             'new_view_today',
             'view_back_today',
-            'country'
+            'country',
+            'total_users',
+            'total_posts',
+            'top_user',
+            'top_view_post'
         ));
         
     }
