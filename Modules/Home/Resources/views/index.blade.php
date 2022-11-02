@@ -21,28 +21,28 @@
         <div class="row" style="display: inline-block;">
             <div class="tile_count">
                 <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-eye"></i> Total Views</span>
+                    <span class="count_top green"><i class="fa fa-eye"></i> Total Views</span>
                     <div class="count">{{ $total_views }}</div>
                     <span class="count_bottom"><i class="green">+ {{ $view_today }} </i> views today</span>
                 </div>
                 <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-bullseye"></i> Total New Views</span>
+                    <span class="count_top green"><i class="fa fa-bullseye"></i> Total New Views</span>
                     <div class="count">{{ $total_new_views }}</div>
                     <span class="count_bottom"><i class="green">+ {{ $new_view_today }}</i> view today</span>
                 </div>
                 <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-clock-o"></i> Total View Back</span>
+                    <span class="count_top green"><i class="fa fa-clock-o"></i> Total View Back</span>
                     <div class="count">{{ $total_views_back }}</div>
                     <span class="count_bottom"><i class="green">+ {{ $view_back_today }} </i> view today</span>
                 </div>
 
                 <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                    <span class="count_top green"><i class="fa fa-user"></i> Total Users</span>
                     <div class="count">{{ $total_users }}</div>
                     {{-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> --}}
                 </div>
                 <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> Total Posts</span>
+                    <span class="count_top green"><i class="fa fa-user"></i> Total Posts</span>
                     <div class="count">{{ $total_posts }}</div>
 
                 </div>
@@ -58,7 +58,7 @@
     <div class="row">
 
 
-    <div class="col-md-4 col-sm-4 ">
+    <div class="col-md-3 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
                 <h2 class="green">Top 5 users has many post</h2>
@@ -125,7 +125,7 @@
         </div>
     </div>
 
-    <div class="col-md-4 col-sm-4 ">
+    <div class="col-md-3 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
                 <h2 class="green">Top 5 countries with the most views</h2>
@@ -194,7 +194,7 @@
     </div>
 
 
-    <div class="col-md-4 col-sm-4 ">
+    <div class="col-md-6 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
                 <h2 class="green">Top 5 post with the most views</h2>
