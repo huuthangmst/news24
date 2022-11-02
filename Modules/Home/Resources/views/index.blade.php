@@ -46,21 +46,14 @@
                     <div class="count">{{ $total_posts }}</div>
 
                 </div>
-                <div class="col-md-2 col-sm-4  tile_stats_count">
-                    <span class="count_top">. </span>
-                    <div class="count"></div>
-                    <span class="count_bottom"> </span>
-                </div>
+                
+                
             </div>
         </div>
     </div>
     <!-- /top tiles -->
 
-    <div class="row">
-
-
-    </div>
-    <br />
+    
 
     <div class="row">
 
@@ -68,7 +61,7 @@
     <div class="col-md-4 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
-                <h2>Top 5 users has many post</h2>
+                <h2 class="green">Top 5 users has many post</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -135,7 +128,7 @@
     <div class="col-md-4 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
-                <h2>Top 5 countries with the most views</h2>
+                <h2 class="green">Top 5 countries with the most views</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -204,7 +197,7 @@
     <div class="col-md-4 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
-                <h2>Top 5 post with the most views</h2>
+                <h2 class="green">Top 5 post with the most views</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -269,11 +262,10 @@
         </div>
     </div>
 
-    </div>
     <div class="col-md-5 col-sm-5  ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Bar graph <small>Sessions</small></h2>
+                <h2 class="green">Statistics of posts by month</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -292,24 +284,25 @@
             </div>
             <div class="x_content">
                 {{-- <canvas id="mybarChart"></canvas> --}}
-                {{-- var userData = <?php echo json_encode($userData)?>; --}}
+                
                 <div id="container"></div>
             </div>
         </div>
     </div>
+
+    </div>
+    
 
 
 
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
-    //userData
+    var postData = <?php echo json_encode($postData)?>;
+    var year = <?php echo $year?>;
     Highcharts.chart('container', {
         title: {
-            text: 'New User Growth, 2020'
-        },
-        subtitle: {
-            text: 'Source: positronx.io'
+            text: `Statistics of posts by month, ${year}`,  
         },
         xAxis: {
             categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
@@ -318,7 +311,7 @@
         },
         yAxis: {
             title: {
-                text: 'Number of New Users'
+                text: 'Post number'
             }
         },
         legend: {
@@ -326,14 +319,18 @@
             align: 'right',
             verticalAlign: 'middle'
         },
+        
         plotOptions: {
             series: {
                 allowPointSelect: true
             }
         },
+        chart: { //bỏ thì thành biểu đồ đường, để thì biểu đồ cột
+            type: 'column'
+        },
         series: [{
-            name: 'New Users',
-            // data: userData
+            name: 'Post',
+            data: postData
         }],
         responsive: {
             rules: [{

@@ -134,6 +134,40 @@ class HomeController extends Controller
             // ->groupBy('post_list')
             ->orderBy('post_view_count', 'DESC')
             ->get()->take(5));
+
+        // High chart
+        // $postData = Posts::select(Posts::raw("COUNT(*) as count"))
+        //             ->whereYear('created_at', date('Y'))
+        //             ->groupBy(Posts::raw("MONTH(created_at)"))
+        //             ->pluck('count');
+        // dd(json_decode($postData));
+
+        // High chart count post follow month
+        $post = Posts::select('id', 'created_at')
+        ->get()
+        ->groupBy(function($date) {
+            //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+
+        $postCount = [];
+        $postArr = [];
+
+        foreach ($post as $key => $value) {
+            $postCount[(int)$key] = count($value);
+        }
+
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($postCount[$i])){
+                $postArr[$i] = $postCount[$i];    
+            }else{
+                $postArr[$i] = 0;    
+            }
+        }
+        $postData = collect(array_values($postArr));
+        // dd(collect($postData));
+        
+        $year = date('Y', strtotime(Carbon::now()->toDateString()));
         
 
         return view('home::index', compact(
@@ -147,7 +181,9 @@ class HomeController extends Controller
             'total_users',
             'total_posts',
             'top_user',
-            'top_view_post'
+            'top_view_post',
+            'postData',
+            'year'
         ));
         
     }
