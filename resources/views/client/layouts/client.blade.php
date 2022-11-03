@@ -219,14 +219,7 @@
     </script>
     
     {{-- ajax --}}
-    <script>
-        $.get(
-            "news.detail",
-            function (data) {
-                $("#my-content-div").html(data);
-            }
-        );
-    </script>
+    
 
 </body>
 

@@ -1,13 +1,13 @@
 @extends('client.layouts.client')
 @section('title')
-<title>Detail</title>
+<title>Detailabc</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
-<main id="my-content-div">
+<main id="tbody">
     <style>
         .checked {
             color: orange;
@@ -98,7 +98,7 @@
                         <h3>Write Comment</h3>
                         @if (auth()->check())
                         <div class="card bg-light text-dark">
-                            <form method="POST" action="{{ route('news.comment') }}">
+                            <form method="POST" action="{{ route('news.comment') }}" id="bookForm">
                                 @csrf
                                 {{-- rating --}}
                                 <input class="star star-5 form-control @error('ranking') is-invalid @enderror"
@@ -107,22 +107,22 @@
                                 <label class="star star-5" for="star-5"></label>
 
                                 <input class="star star-4 form-control @error('ranking') is-invalid @enderror"
-                                    id="star-4" type="radio" value="4" name="ranking" />
+                                    id="star-4" type="radio" value="4" name="ranking" id="ranking" />
 
                                 <label class="star star-4" for="star-4"></label>
 
                                 <input class="star star-3 form-control @error('ranking') is-invalid @enderror"
-                                    id="star-3" type="radio" value="3" name="ranking" />
+                                    id="star-3" type="radio" value="3" name="ranking" id="ranking" />
 
                                 <label class="star star-3" for="star-3"></label>
 
                                 <input class="star star-2 form-control @error('ranking') is-invalid @enderror"
-                                    id="star-2" type="radio" value="2" name="ranking" />
+                                    id="star-2" type="radio" value="2" name="ranking" id="ranking" />
 
                                 <label class="star star-2" for="star-2"></label>
 
                                 <input class="star star-1 form-control @error('ranking') is-invalid @enderror"
-                                    id="star-1" type="radio" value="1" name="ranking" />
+                                    id="star-1" type="radio" value="1" name="ranking" id="ranking" />
 
                                 <label class="star star-1" for="star-1"></label>
                                 {{-- validator --}}
@@ -134,9 +134,9 @@
                                     @enderror
                                 </div>
                                 {{-- end rating --}}
-                                <input type="text" name="comment" required
+                                <input type="text" name="comment" id="comment" required
                                     class="container form-control @error('comment') is-invalid @enderror"
-                                    value="{{old('comment')}}" size="80" placeholder="✍️ Write comment for you...">
+                                    value="{{old('comment')}}" size="80" placeholder=" Write comment for you...">
                                 </input>
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align ml-2"></span>
@@ -145,20 +145,19 @@
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-danger mt-3">Send comment</button>
+                                <button type="submit" class="genric-btn danger circle" id="saveBtn">Send comment</button>
                             </form>
                         </div>
                         @else
                             <p class="text-danger">Must be logged in before commenting!</p>
                         @endif
                         
-
                         <h4 class="mt-5">Comments orthers</h4>
                         @if ($comments_data == [])
                         <p>This post has no comments yet...</p>
                         @else
                         @foreach ($comments_data as $comment)
-                        <div class="">
+                        <div>
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
@@ -355,7 +354,7 @@
                     </div>
                     <!-- New Poster -->
                     <div class="news-poster d-none d-lg-block">
-                        <img src="assets/img/news/news_card.jpg" alt="">
+                        <img src="" alt="">
                     </div>
                 </div>
             </div>
@@ -363,4 +362,41 @@
     </div>
     <!-- About US End -->
 </main>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+
+$("#bookForm").submit(function(e) {
+    e.preventDefault();
+
+    var raking = $("#raking").val();
+    var comment = $("#comment").val();
+    console.log(raking);
+
+
+    $.ajax({
+        type: "POST",
+        url: "{{ route('news.comment') }}",
+        data: {
+            raking: raking,
+            comment: comment,
+        },
+        success: function(response) {
+            if (response) {
+                $('#tbody').load(document.URL +  ' #tbody');
+            }
+        }
+    });
+    $("#saveBtn").click(function() {
+        $("#tbody").load("#tbody");
+    });
+
+});
+</script>
 @endsection
