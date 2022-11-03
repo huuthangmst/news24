@@ -1,6 +1,6 @@
 @extends('client.layouts.client')
 @section('title')
-    <title>News -Trang chủ</title>
+    <title>11News -Trang chủ</title>
     </style>
 @endsection
 @section('content')
