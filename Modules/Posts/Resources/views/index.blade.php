@@ -72,7 +72,7 @@
                         @endif
                         
                         @if ($posts_items->enable == 1)
-                            <td>Enable</td>
+                            <td><i class="fa fa-check-circle"></i></td>
                         @else
                             <td>Disable</td>
                         @endif
