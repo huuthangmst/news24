@@ -6,6 +6,7 @@ use Modules\Topics\Http\Components\SelectCategories;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Categories;
+use App\Models\Posts;
 use App\Models\Topics;
 use GuzzleHttp\Promise\Create;
 use Modules\Topics\Http\Requests\CreateTopicsRequest;
@@ -94,6 +95,8 @@ class TopicsController extends Controller
     
     public function destroy($id)
     {
+        Posts::whereRelation('topics','topic_id', '=', $id)->delete();
+        
         $this->topics->find($id)->delete();
         return redirect()->route('topics.index');
     }

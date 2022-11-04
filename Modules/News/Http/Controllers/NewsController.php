@@ -46,16 +46,16 @@ class NewsController extends Controller
     {
         // Công nghệ
         //$tech = json_decode($this->posts->with('topics')->where('topic_id', 4)->latest()->first());
-        $tech = json_decode($this->categories->with('postss')->where('slug', 'cong-nghe')->first()->postss->first());
+        $tech = json_decode($this->categories->with('postss')->where('slug', 'cong-nghe')->first()->postss->sortByDesc('id')->first());
         //dd($tech);
 
         // Giải trí
         //$ent = json_decode($this->posts->where('topic_id', 1)->latest()->first());
-        $ent = json_decode($this->categories->with('postss')->where('slug', 'giai-tri')->first()->postss->first());
+        $ent = json_decode($this->categories->with('postss')->where('slug', 'giai-tri')->first()->postss->sortByDesc('id')->first());
 
         // Thời sự
         //$new = json_decode($this->posts->where('topic_id', 6)->latest()->first());
-        $new = json_decode($this->categories->with('postss')->where('slug', 'xa-hoi')->first()->postss->first());
+        $new = json_decode($this->categories->with('postss')->where('slug', 'thoi-su')->first()->postss->sortByDesc('id')->first());
         //dd($new);
 
         $first_post = $this->posts->where('enable', 1)->latest()->first();

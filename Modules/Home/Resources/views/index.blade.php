@@ -17,8 +17,8 @@
 <!-- page content -->
 <div>
     <!-- top tiles -->
-    <div class="column">
-        <div class="row" style="display: inline-block;">
+    <div class="col-md-12">
+        <div class="">
             <div class="tile_count">
                 <div class="col-md-2 col-sm-4  tile_stats_count">
                     <span class="count_top green"><i class="fa fa-eye"></i> Total Views</span>
@@ -46,8 +46,6 @@
                     <div class="count">{{ $total_posts }}</div>
 
                 </div>
-                
-                
             </div>
         </div>
     </div>
@@ -128,7 +126,7 @@
     <div class="col-md-3 col-sm-4 ">
         <div class="x_panel tile fixed_height_320 overflow_hidden">
             <div class="x_title">
-                <h2 class="green">Top 5 countries with the most views</h2>
+                <h2 class="green">Top 5 countries with most views</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -262,7 +260,7 @@
         </div>
     </div>
 
-    <div class="col-md-5 col-sm-5  ">
+    <div class="col-md-12 col-sm-5  ">
         <div class="x_panel">
             <div class="x_title">
                 <h2 class="green">Statistics of posts by month</h2>

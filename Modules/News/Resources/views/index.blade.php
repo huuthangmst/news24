@@ -17,15 +17,22 @@
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
                                 <ul id="js-news" class="js-hidden">
-                                    <li class="news-item">{{$first_post->title}}.
-                                    </li>
-                                    <li class="news-item">{{$tech->title}}.
-                                    </li>
-                                    <li class="news-item">{{$ent->title}}.
-                                    </li>
-                                    <li class="news-item">{{$new->title}}.
-                                    </li>
-                                    
+                                    @if($first_post != null)
+                                        <li class="news-item">{{$first_post->title}}.
+                                        </li>
+                                    @endif
+                                    @if ($tech != null)
+                                        <li class="news-item">{{$tech->title}}.
+                                        </li>
+                                    @endif
+                                    @if ($new != null)
+                                        <li class="news-item">{{$ent->title}}.
+                                        </li>
+                                    @endif
+                                    @if ($new != null)
+                                        <li class="news-item">{{$new->title}}.
+                                        </li>
+                                    @endif 
                                 </ul>
                             </div>
 
@@ -49,38 +56,44 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="zoom trend-bottom-img mb-30">
-                                            <a href="{{ route('news.detail', ['slug'=>$tech->slug])}}"><img src="{{$tech->feature_image_path}}" alt=""></a>
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color1">Công nghệ</span>
-                                            <h4><a href="{{ route('news.detail', ['slug'=>$tech->slug])}}">{{$tech->title}}</a></h4>
-                                        </div>
+                                        @if ($tech != null)
+                                            <div class="zoom trend-bottom-img mb-30">
+                                                <a href="{{ route('news.detail', ['slug'=>$tech->slug])}}"><img height="190px" width="40px" src="{{$tech->feature_image_path}}" alt=""></a>
+                                            </div>
+                                            <div class="trend-bottom-cap">
+                                                <span class="color1">Công nghệ</span>
+                                                <h4><a href="{{ route('news.detail', ['slug'=>$tech->slug])}}">{{$tech->title}}</a></h4>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="zoom trend-bottom-img mb-30">
-                                            <a href="{{ route('news.detail', ['slug'=>$ent->slug])}}"><img src="{{$ent->feature_image_path}}" alt=""></a>
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color2">Giải trí</span>
-                                            <h4>
-                                                <h4><a href="{{ route('news.detail', ['slug'=>$ent->slug])}}">{{$ent->title}}</a></h4>
-                                            </h4>
-                                        </div>
+                                        @if ($ent != null)
+                                            <div class="zoom trend-bottom-img mb-30">
+                                                <a href="{{ route('news.detail', ['slug'=>$ent->slug])}}"><img height="190px" width="40px" src="{{$ent->feature_image_path}}" alt=""></a>
+                                            </div>
+                                            <div class="trend-bottom-cap">
+                                                <span class="color2">Giải trí</span>
+                                                <h4>
+                                                    <h4><a href="{{ route('news.detail', ['slug'=>$ent->slug])}}">{{$ent->title}}</a></h4>
+                                                </h4>
+                                            </div>
+                                        @endif 
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
-                                        <div class="zoom trend-bottom-img mb-30">
-                                            <a href="{{ route('news.detail', ['slug'=>$new->slug])}}"><img src="{{$new->feature_image_path}}" alt=""></a>
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color3">Thời sự</span>
-                                            <h4><a href="{{ route('news.detail', ['slug'=>$new->slug])}}">{{$new->title}}</a>
-                                            </h4>
-                                        </div>
+                                        @if ($new != null)
+                                            <div class="zoom trend-bottom-img mb-30">
+                                                <a href="{{ route('news.detail', ['slug'=>$new->slug])}}"><img height="190px" width="40px" src="{{$new->feature_image_path}}" alt=""></a>
+                                            </div>
+                                            <div class="trend-bottom-cap">
+                                                <span class="color3">Thời sự</span>
+                                                <h4><a href="{{ route('news.detail', ['slug'=>$new->slug])}}">{{$new->title}}</a>
+                                                </h4>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

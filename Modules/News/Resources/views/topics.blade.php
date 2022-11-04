@@ -87,17 +87,19 @@
 
                         @endforeach --}}
                         @foreach ( $categories_data->postss as $cate_item )
-                        <div class="section-top-border">
-                            <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><h3 class="mb-30">{{$cate_item->title}}</h3></a>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid"></a>
+                            @if ($cate_item->enable == 1)
+                                <div class="section-top-border">
+                                    <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><h3 class="mb-30">{{$cate_item->title}}</h3></a>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid"></a>
+                                        </div>
+                                        <div class="col-md-9 mt-sm-20">
+                                            <p>{{$cate_item->description}}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-9 mt-sm-20">
-                                    <p>{{$cate_item->description}}</p>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
                         @endforeach
                         
                     </div>

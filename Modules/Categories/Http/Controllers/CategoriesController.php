@@ -9,6 +9,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Categories;
+use App\Models\Posts;
+use App\Models\Topics;
 use Illuminate\Support\Str;
 
 
@@ -21,30 +23,20 @@ class CategoriesController extends Controller
         $this->categories = $categories;
     }
 
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+    
     public function index()
     {
         $dataCategories = $this->categories->latest()->paginate(8);
         return view('categories::index', compact('dataCategories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
+    
     public function create()
     {
         return view('categories::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
+    
     public function store(CategoriesAddRequest $request)
     {
         // call model and create
@@ -56,33 +48,20 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function show($id)
     {
         return view('categories::show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function edit($id)
     {
         $dataCategories = $this->categories->find($id);
         return view('categories::edit', compact('dataCategories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function update(CategoriesUpdateRequest $request, $id)
     {
         $this->categories->find($id)->update([
@@ -93,14 +72,14 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function destroy($id)
     {
+        Posts::whereRelation('topics','category_id', '=', $id)->delete();
+        Topics::where('category_id', $id)->delete();
+        
         $this->categories->find($id)->delete();
+        
         return redirect()->route('categories.index');
     }
 }

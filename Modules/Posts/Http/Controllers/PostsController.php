@@ -271,6 +271,12 @@ class PostsController extends Controller
         $o = json_decode($this->check_post->with('post')->where('post_id', $id)->first()->id);
         // dd($o);
         $this->check_post->find($o)->update($data_check);
-        return redirect()->route('posts.index');
+        $user_type = (Auth::user());
+        if($user_type->user_type == 0){
+            return redirect()->route('guest.index');
+        }
+        else{
+            return redirect()->route('posts.index');
+        }
     }
 }
