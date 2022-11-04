@@ -133,7 +133,7 @@
                         </div>
 
                         {{-- writer --}}
-                        <div class="item form-group">
+                        {{-- <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Writer</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
@@ -147,7 +147,7 @@
                             @error('user_id')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         @if (($au->user_type)==1)
                             <div class="item form-group">

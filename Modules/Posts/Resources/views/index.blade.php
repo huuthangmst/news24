@@ -92,9 +92,9 @@
                 </tbody>
             </table>          
         </div>
-        {{-- <div class="col-md-6">
-            <p>{{ $dataCategories->links() }}</p>
-        </div>  --}}
+        <div class="col-md-6">
+            <p>{{ $dataPosts->links() }}</p>
+        </div> 
     </div>
 </div>
 

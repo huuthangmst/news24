@@ -179,6 +179,7 @@
                                     <div class="whats-news-caption">
                                         <div class="row">
                                             @foreach ($da->postss as $po)
+                                                @if ($po->enable == 1)
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="single-what-news mb-100">
                                                         <div class="hover15">
@@ -190,6 +191,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
@@ -339,4 +341,5 @@
     </div>
     <!-- End pagination  -->
 </main>
+
 @endsection

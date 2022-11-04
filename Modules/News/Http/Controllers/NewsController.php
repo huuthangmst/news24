@@ -108,7 +108,7 @@ class NewsController extends Controller
     {
         $slug_detail = $slug;
 
-        $posts_data = $this->posts->latest()->skip(0)->take(10)->get(); //get first 5 rows and latest
+        $posts_data = $this->posts->where('enable', 1)->latest()->skip(0)->take(10)->get(); //get first 5 rows and latest
         $detail = json_decode($this->posts->with('topics')->where('slug', $slug)->first());
 
         // count views vd:Post::where('slug',$slug)->increment('view_count');
@@ -148,7 +148,7 @@ class NewsController extends Controller
         //dd($post); */
 
         //count views with ip
-        $ip_client = $_SERVER['REMOTE_ADDR'];
+        $ip_client = $_SERVER['REMOTE_ADDR']; //Nó trả về địa chỉ IP của người dùng hiện đang truy cập trang web.
         $post_id = json_decode($this->posts->where('slug', $slug)->first()->id);
         $ip_data = geoip()->getLocation($ip_client);
 

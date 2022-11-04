@@ -27,7 +27,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $dataCategories = $this->categories->latest()->paginate(10);
+        $dataCategories = $this->categories->latest()->paginate(8);
         return view('categories::index', compact('dataCategories'));
     }
 

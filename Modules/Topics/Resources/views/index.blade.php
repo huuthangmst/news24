@@ -69,9 +69,9 @@
                 </tbody>
             </table>       
         </div>
-        {{-- <div class="col-md-6">
-            <p>{{ $dataCategories->links() }}</p>
-        </div>  --}}
+        <div class="col-md-6">
+            <p>{{ $dataTopics->links() }}</p>
+        </div> 
     </div>
 </div>
 

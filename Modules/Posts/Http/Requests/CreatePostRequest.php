@@ -22,7 +22,6 @@ class CreatePostRequest extends FormRequest
             'title' => 'bail|required|unique:posts|min:3',
             'description' => 'required|min:3',
             'content' => 'required',
-            'user_id' => 'required',
             'topic_id' => 'required',
             //'enable' => 'required',
         ];
@@ -37,7 +36,6 @@ class CreatePostRequest extends FormRequest
             'description.required' => 'Description cannot be blank',
             'description.min' => 'Description cannot be less than 3 characters',
             'content.required' => 'Content cannot be blank',
-            'user_id.required' => 'User_id cannot be blank',
             // 'enable.required' => 'Enable cannot be blank',
         ];
     }

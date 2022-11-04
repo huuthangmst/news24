@@ -31,8 +31,8 @@
                         @if (Auth::user()->user_type == 1)
                             <i class="fa fa-bell"></i>
                             @foreach ($post_disable as $disable)
-                                @if ($disable->post_check->description_check == null)
-                                    <span class="badge bg-red">{{ count($post_disable) }}</span>
+                                @if ($disable->post_check->enable == 1 )
+                                    <span class="badge bg-red">{{ count($check_count) }}</span>
                                 @endif
                             @endforeach
                         @else

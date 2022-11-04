@@ -34,7 +34,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        $dataPosts = $this->posts->all();
+        $dataPosts = $this->posts->latest()->paginate(5);
         return view('posts::index', compact('dataPosts'));
     }
 
@@ -70,7 +70,7 @@ class PostsController extends Controller
             'content' => $request->content,
             'topic_id' => $request->topic_id,
             'post_type' => $request->type,
-            'user_id' => $request->user_id,
+            'user_id' => Auth::id(),
             'enable' => $en,
             'slug' => Str::slug($request->title)
         ];
@@ -99,7 +99,14 @@ class PostsController extends Controller
         ];
         
         $this->check_post->create($data_check);
-        return redirect()->route('posts.index');
+        
+        $user_type = (Auth::user());
+        if($user_type->user_type == 0){
+            return redirect()->route('guest.index');
+        }
+        else{
+            return redirect()->route('posts.index');
+        }
     }
 
     public function show($id)
@@ -130,16 +137,18 @@ class PostsController extends Controller
         if($auth == 1) // is admin
         {
             $en = $request->enable;
+            $user_id = $request->user_id;
         }
         else{
             $en = 0;
+            $user_id = Auth::id();
         }
         $dataPostUpdate = [
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
             'topic_id' => $request->topic_id,
-            'user_id' => $request->user_id,
+            'user_id' => $user_id,
             'enable' => $en,
             'slug' => Str::slug($request->title)
         ];
@@ -153,13 +162,25 @@ class PostsController extends Controller
         }
 
         $this->posts->find($id)->update($dataPostUpdate);
-        return redirect()->route('posts.index');
+        $user_type = (Auth::user());
+        if($user_type->user_type == 0){
+            return redirect()->route('guest.index');
+        }
+        else{
+            return redirect()->route('posts.index');
+        }
     }
 
     public function destroy($id)
     {
         $this->posts->find($id)->delete();
-        return redirect()->route('posts.index');
+        $user_type = (Auth::user());
+        if($user_type->user_type == 0){
+            return redirect()->route('guest.index');
+        }
+        else{
+            return redirect()->route('posts.index');
+        }
     }
 
     // tìm title trong db->đối chứng với nhau xem có trùng nhau hay k->nếu trùng thì ko tạo->ngược lại thì tạo luôn vào database

@@ -25,7 +25,7 @@ class TopicsController extends Controller
     
     public function index()
     {
-        $dataTopics = $this->topics->latest()->paginate(10);
+        $dataTopics = $this->topics->latest()->paginate(8);
         return view('topics::index', compact('dataTopics'));
     }
 

@@ -29,8 +29,9 @@ class GuestController extends Controller
     {
         $auth_id = Auth::user()->id;
         $dataPosts = json_decode($this->user_post->with('post_list')->where('id', $auth_id)->first());
+        // $g = $dataPosts->post_list;
         //$data_check = json_decode($)
-        //dd($dataPosts);
+        // dd($g);
         return view('guest::index', compact('dataPosts'));
     }
 
