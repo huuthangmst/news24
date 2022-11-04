@@ -207,9 +207,16 @@ class NewsController extends Controller
         // get id post with slug
         $post = json_decode($this->posts->where('slug', $latestslug)->first());
 
+        if(Auth()->check()){
+            $u_id = Auth()->user()->id;
+        }
+        else{
+            $u_id = 12;
+        }
+
         $dataComment = [
             'post_id' => $post->id,
-            'user_id' => Auth()->user()->id,
+            'user_id' => $u_id,
             'comment' => $request->comment,
             'ranking' => $request->ranking
         ];

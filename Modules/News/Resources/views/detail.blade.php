@@ -149,7 +149,57 @@
                             </form>
                         </div>
                         @else
-                            <p class="text-danger">Must be logged in before commenting!</p>
+                        <div class="card bg-light text-dark">
+                            <form method="POST" action="{{ route('news.comment') }}" id="bookForm">
+                                @csrf
+                                {{-- rating --}}
+                                <input class="star star-5 form-control @error('ranking') is-invalid @enderror"
+                                    id="star-5" type="radio" value="5" name="ranking" />
+
+                                <label class="star star-5" for="star-5"></label>
+
+                                <input class="star star-4 form-control @error('ranking') is-invalid @enderror"
+                                    id="star-4" type="radio" value="4" name="ranking" id="ranking" />
+
+                                <label class="star star-4" for="star-4"></label>
+
+                                <input class="star star-3 form-control @error('ranking') is-invalid @enderror"
+                                    id="star-3" type="radio" value="3" name="ranking" id="ranking" />
+
+                                <label class="star star-3" for="star-3"></label>
+
+                                <input class="star star-2 form-control @error('ranking') is-invalid @enderror"
+                                    id="star-2" type="radio" value="2" name="ranking" id="ranking" />
+
+                                <label class="star star-2" for="star-2"></label>
+
+                                <input class="star star-1 form-control @error('ranking') is-invalid @enderror"
+                                    id="star-1" type="radio" value="1" name="ranking" id="ranking" />
+
+                                <label class="star star-1" for="star-1"></label>
+                                {{-- validator --}}
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align ml-2"></span>
+                                    </label>
+                                    @error('ranking')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                {{-- end rating --}}
+                                <input type="text" name="comment" id="comment" required
+                                    class="container form-control @error('comment') is-invalid @enderror"
+                                    value="{{old('comment')}}" size="80" placeholder=" Write comment for you...">
+                                </input>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align ml-2"></span>
+                                    </label>
+                                    @error('comment')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="genric-btn danger circle" id="saveBtn">Send comment</button>
+                            </form>
+                        </div>
                         @endif
                         
                         <h4 class="mt-5">Comments orthers</h4>
@@ -363,40 +413,4 @@
     <!-- About US End -->
 </main>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-</script>
-<script type="text/javascript">
-
-$("#bookForm").submit(function(e) {
-    e.preventDefault();
-
-    var raking = $("#raking").val();
-    var comment = $("#comment").val();
-    console.log(raking);
-
-
-    $.ajax({
-        type: "POST",
-        url: "{{ route('news.comment') }}",
-        data: {
-            raking: raking,
-            comment: comment,
-        },
-        success: function(response) {
-            if (response) {
-                $('#tbody').load(document.URL +  ' #tbody');
-            }
-        }
-    });
-    $("#saveBtn").click(function() {
-        $("#tbody").load("#tbody");
-    });
-
-});
-</script>
 @endsection
