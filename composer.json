@@ -13,6 +13,7 @@
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.3",
         "nwidart/laravel-modules": "^9.0",
+        "realrashid/sweet-alert": "^5.1",
         "staudenmeir/eloquent-has-many-deep": "1.15",
         "torann/geoip": "^3.0",
         "unisharp/laravel-filemanager": "^2.5"

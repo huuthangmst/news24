@@ -59,9 +59,9 @@
                         
                     <tr>
                         <th scope="row">{{ $posts_items->id }}</th>
-                        <th><img src="{{ $posts_items->feature_image_path }}" height="50" width="50"></th>
-                        <td>{{ $posts_items->title }}</td>
-                        <td>{{ $posts_items->description }}</td>
+                        <th><img src="{{ $posts_items->feature_image_path }}" height="80" width="90"></th>
+                        <td class="text">{{ $posts_items->title }}</td>
+                        <td class="text-concat">{{ $posts_items->description }}</td>
                         <td>{{ $posts_items->user_id }}</td>
                         <td>{{optional($posts_items->topics)->name}}</td>
                         <td>{{optional($posts_items->topics->categories)->name}}</td>
@@ -72,19 +72,19 @@
                         @endif
                         
                         @if ($posts_items->enable == 1)
-                            <td><i class="fa fa-check-circle"></i></td>
+                            <td class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td>Disable</td>
+                            <td class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         <td>
                             <a
                                 href="{{ route('posts.edit', ['id'=>$posts_items->id]) }}"
-                                class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                class="blue"><i class="fa fa-edit"></i></a>&nbsp
                             <a
                                 href="{{ route('posts.destroy', ['id'=>$posts_items->id]) }}"
                                 data-url=""
                                 onclick="return confirm('Are you sure you want to delete this item?');"
-                                class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                class="red action_delete "><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     

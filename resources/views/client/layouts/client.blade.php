@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- rating --}}
     <style>
         .zoom {
@@ -122,6 +123,7 @@
 
     <!-- header -->
     @include('client.partials.header')
+    @include('sweetalert::alert')
 
     {{-- content --}}
     @yield('content')
@@ -130,7 +132,8 @@
     @include('client.partials.footer')
 
     <!-- JS here -->
-
+    {{-- thông báo --}}
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- All JS Custom Plugins Link Here here -->
     <script src="{{ asset('news_templates/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
     <!-- Jquery, Popper, Bootstrap -->
@@ -218,8 +221,11 @@
         }
     </script>
     
-    {{-- ajax --}}
-    
+    {{-- load animation --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
 </body>
 

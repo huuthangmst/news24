@@ -43,7 +43,7 @@
                     <div class="col-lg-8">
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
-                            <div class="trend-top-img">
+                            <div class="trend-top-img" data-aos="fade-down">
                                 <a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}"><img src="{{$first_post->feature_image_path}}" alt=""></a>
                                 <div class="trend-top-cap">
                                     <span>For you!</span>
@@ -55,7 +55,7 @@
                         <div class="trending-bottom">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
+                                    <div class="single-bottom mb-35" data-aos="fade-right">
                                         @if ($tech != null)
                                             <div class="zoom trend-bottom-img mb-30">
                                                 <a href="{{ route('news.detail', ['slug'=>$tech->slug])}}"><img height="190px" width="40px" src="{{$tech->feature_image_path}}" alt=""></a>
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
+                                    <div class="single-bottom mb-35" data-aos="fade-right">
                                         @if ($ent != null)
                                             <div class="zoom trend-bottom-img mb-30">
                                                 <a href="{{ route('news.detail', ['slug'=>$ent->slug])}}"><img height="190px" width="40px" src="{{$ent->feature_image_path}}" alt=""></a>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
+                                    <div class="single-bottom mb-35" data-aos="fade-right">
                                         @if ($new != null)
                                             <div class="zoom trend-bottom-img mb-30">
                                                 <a href="{{ route('news.detail', ['slug'=>$new->slug])}}"><img height="190px" width="40px" src="{{$new->feature_image_path}}" alt=""></a>
@@ -102,7 +102,10 @@
                     <!-- Riht content -->
                     <div class="col-lg-4">
                         @foreach ($posts_data as $post)
-                            <div class="trand-right-single d-flex">
+                            <div class="trand-right-single d-flex" data-aos="fade-left"
+                            data-aos-anchor="#example-anchor"
+                            data-aos-offset="500"
+                            data-aos-duration="500">
                                 <div class="trand-right-img">
                                     <img class="zoom" height="100" width="150" src="{{$post->feature_image_path}}" alt="">
                                 </div>
@@ -135,7 +138,7 @@
                     <div class="col-12">
                         <div class="weekly-news-active dot-style d-flex dot-style">
                             @foreach($posts_data as $post)                      
-                                <div class="weekly-single">
+                                <div class="weekly-single" data-aos="zoom-in-down">
                                     <div class="weekly-img">
                                         <img src="{{$post->feature_image_path}}" alt="">
                                     </div>
@@ -193,7 +196,7 @@
                                         <div class="row">
                                             @foreach ($da->postss as $po)
                                                 @if ($po->enable == 1)
-                                                <div class="col-lg-6 col-md-6">
+                                                <div class="col-lg-6 col-md-6" data-aos="zoom-in-down">
                                                     <div class="single-what-news mb-100">
                                                         <div class="hover15">
                                                             <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><figure><img width="300px" height="200px" src="{{ $po->feature_image_path }}" alt=""></figure></a>
@@ -218,7 +221,7 @@
                 </div>
                 <div class="col-lg-4">
                     @foreach ($posts_50data as $f)
-                    <div class="section-top-border">
+                    <div class="section-top-border" data-aos="fade-left">
                         <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><h6 class="mb-30">{{ $f->title }}</h6></a>
                         <div class="row">
                             <div class="zoom col-md-5">

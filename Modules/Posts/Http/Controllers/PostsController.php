@@ -173,7 +173,10 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $this->posts->find($id)->delete();
+        $a=$this->posts->find($id)->delete();
+        if($a){
+            toast('Deleted Successfully!','success','top-right');
+        }
         $user_type = (Auth::user());
         if($user_type->user_type == 0){
             return redirect()->route('guest.index');

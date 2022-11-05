@@ -37,6 +37,7 @@ class LoginController extends Controller
      */
     public function __construct(Categories $categories)
     {
+        toast('Login successfully!','success','top-right');
         $this->middleware('guest')->except('logout');
     }
 }

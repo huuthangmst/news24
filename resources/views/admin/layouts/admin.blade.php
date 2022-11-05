@@ -11,6 +11,7 @@
     @yield('title')
 
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('admin_gentelella/vendors/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('admin_gentelella/vendors/font-awesome/css/font-awesome.min.css')}}" >
@@ -29,6 +30,29 @@
 
     <!-- Custom Theme Style -->
     <link rel="stylesheet" href="{{ asset('admin_gentelella/build/css/custom.min.css')}}">
+    <style>
+      .text {
+        line-height: 1.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-inline;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        .text-concat {
+          padding-left:2vw;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          /* width: 325px; */
+          max-height: 3.6em; /* (Number of lines you want visible) * (line-height) */
+          line-height: 1.5em;
+          /* line-height: 25px; */
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          padding-top: 15px;
+        }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -67,6 +91,7 @@
 
         <!-- top navigation -->
         @include('admin.partials.header')
+        @include('sweetalert::alert')
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -122,6 +147,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('admin_gentelella/build/js/custom.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
     <!-- tinymce-editor -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script> 
