@@ -53,14 +53,20 @@ class UsersController extends Controller
             'name'=>$request->name,
             'email'=>$request->email
         ];
-        $this->users->find($id)->update($data_update);
+        $toast = $this->users->find($id)->update($data_update);
+        if($toast){
+            toast('Update User Successfully!','success','top-right');
+        }
         return redirect()->route('users.index');
     }
 
     
     public function destroy($id)
     {
-        $this->users->find($id)->delete();
+        $toast = $this->users->find($id)->delete();
+        if($toast){
+            toast('Delete User Successfully!','success','top-right');
+        }
         return redirect()->route('users.index');
     }
 }

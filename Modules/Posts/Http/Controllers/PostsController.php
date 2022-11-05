@@ -87,6 +87,7 @@ class PostsController extends Controller
 
         // dd($dataPostCreate);
         $this->posts->create($dataPostCreate);
+        
 
         // get id post
         $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
@@ -224,7 +225,10 @@ class PostsController extends Controller
                 'slug' => Str::slug($request->title)
             ];
             //dd($dataPost);
-            $this->posts->firstOrCreate($dataPost);
+            $toast = $this->posts->firstOrCreate($dataPost);
+            if($toast){
+                toast('Get Post with API Successfully!','success','top-right');
+            }
         }
         return redirect()->route('posts.index');
     }

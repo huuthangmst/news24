@@ -50,12 +50,15 @@ class TopicsController extends Controller
     public function store(CreateTopicsRequest $request)
     {
         // call model and create
-        $this->topics->create([
+        $toast = $this->topics->create([
             'name'=>$request->name,
             'category_id'=>$request->category_id,
             'enable'=>$request->enable,
             'slug' => Str::slug($request->name)
         ]);
+        if($toast){
+            toast('Created Topic Successfully!','success','top-right');
+        }
         return redirect()->route('topics.index');
     }
 
@@ -83,12 +86,15 @@ class TopicsController extends Controller
     
     public function update(UpdateTopicsRequest $request, $id)
     {
-        $this->topics->find($id)->update([
+        $toast = $this->topics->find($id)->update([
             'name' => $request->name,
             'category_id'=> $request->category_id,
             'enable' => $request->enable,
             'slug' => Str::slug($request->name)
         ]);
+        if($toast){
+            toast('Update Topic Successfully!','success','top-right');
+        }
         return redirect()->route('topics.index');
     }
 
@@ -97,7 +103,10 @@ class TopicsController extends Controller
     {
         Posts::whereRelation('topics','topic_id', '=', $id)->delete();
         
-        $this->topics->find($id)->delete();
+        $toast = $this->topics->find($id)->delete();
+        if($toast){
+            toast('Delete Topic Successfully!','success','top-right');
+        }
         return redirect()->route('topics.index');
     }
 }

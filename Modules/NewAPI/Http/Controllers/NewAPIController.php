@@ -75,7 +75,10 @@ class NewAPIController extends Controller
         ];
         // dd(md5(1));
         
-        $this->apikey->firstOrCreate($data);
+        $toast = $this->apikey->firstOrCreate($data);
+        if($toast){
+            toast('Created Post Successfully!','success','top-right');
+        }
         return redirect()->route('newapi.index');
     }
 
@@ -105,14 +108,20 @@ class NewAPIController extends Controller
         ];
         // dd($data);
         
-        $this->apikey->find($id)->update($data);
+        $toast = $this->apikey->find($id)->update($data);
+        if($toast){
+            toast('Update Successfully!','success','top-right');
+        }
         return redirect()->route('newapi.index');
     }
 
     
     public function destroy($id)
     {
-        $this->apikey->find($id)->delete();
+        $toast = $this->apikey->find($id)->delete();
+        if($toast){
+            toast('Delete Successfully!','success','top-right');
+        }
         return redirect()->route('newapi.index');
     }
 

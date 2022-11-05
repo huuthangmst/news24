@@ -40,11 +40,14 @@ class CategoriesController extends Controller
     public function store(CategoriesAddRequest $request)
     {
         // call model and create
-        $this->categories->create([
+        $toast = $this->categories->create([
             'name' => $request->name,
             'enable' => $request->enable,
             'slug' => Str::slug($request->name)
         ]);
+        if($toast){
+            toast('Created Categories Successfully!','success','top-right');
+        }
         return redirect()->route('categories.index');
     }
 
@@ -64,11 +67,14 @@ class CategoriesController extends Controller
     
     public function update(CategoriesUpdateRequest $request, $id)
     {
-        $this->categories->find($id)->update([
+        $toast = $this->categories->find($id)->update([
             'name' => $request->name,
             'enable' => $request->enable,
             'slug' => Str::slug($request->name)
         ]);
+        if($toast){
+            toast('Update Categories Successfully!','success','top-right');
+        }
         return redirect()->route('categories.index');
     }
 
@@ -78,7 +84,10 @@ class CategoriesController extends Controller
         Posts::whereRelation('topics','category_id', '=', $id)->delete();
         Topics::where('category_id', $id)->delete();
         
-        $this->categories->find($id)->delete();
+        $toast = $this->categories->find($id)->delete();
+        if($toast){
+            toast('Delete Categories Successfully!','success','top-right');
+        }
         
         return redirect()->route('categories.index');
     }
