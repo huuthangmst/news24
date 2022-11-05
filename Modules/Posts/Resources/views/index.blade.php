@@ -72,15 +72,17 @@
                         @endif
                         
                         @if ($posts_items->enable == 1)
-                            <td class="green"><i class="fa fa-check-circle"></i></td>
+                            <td title="Enable" class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td class="red"><i class="bi bi-x-circle-fill"></i></td>
+                            <td title="Disable" class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         <td>
                             <a
+                                title="Update"
                                 href="{{ route('posts.edit', ['id'=>$posts_items->id]) }}"
                                 class="blue"><i class="fa fa-edit"></i></a>&nbsp
                             <a
+                                title="Delete"
                                 href="{{ route('posts.destroy', ['id'=>$posts_items->id]) }}"
                                 data-url=""
                                 onclick="return confirm('Are you sure you want to delete this item?');"

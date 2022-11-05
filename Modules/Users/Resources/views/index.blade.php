@@ -56,12 +56,14 @@
                         @endif
                         <td>
                             <a
+                                title="Update"
                                 href="{{ route('users.edit', ['id'=>$user_items->id]) }}"
-                                class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                class="blue "><i class="fa fa-edit"></i></a>&nbsp
                             <a
+                                title="Delete"
                                 href="{{ route('users.destroy', ['id'=>$user_items->id]) }}"
                                 onclick="return confirm('Are you sure you want to delete this item?');"
-                                class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                class="red action_delete "><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     

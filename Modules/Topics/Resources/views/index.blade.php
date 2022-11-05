@@ -50,18 +50,20 @@
                         <td>{{ $topic_items->name }}</td>
                         <td>{{optional($topic_items->categories)->name}}</td> {{-- gọi phương thức trên một đối tượng --}}
                         @if ($topic_items->enable == 1)
-                            <td>Enable</td>
+                            <td title="Enable" class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td>Disable</td>
+                            <td title="Disable" class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         <td>
                             <a
+                                title="Update"
                                 href="{{ route('topics.edit', ['id'=>$topic_items->id]) }}"
-                                class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                class="blue "><i class="fa fa-edit"></i></a>&nbsp
                             <a
+                                title="Delete"
                                 href="{{ route('topics.destroy', ['id'=>$topic_items->id]) }}"
                                 onclick="return confirm('Are you sure you want to delete this item?');"
-                                class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                class="red action_delete "><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     

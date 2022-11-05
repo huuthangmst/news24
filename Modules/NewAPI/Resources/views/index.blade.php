@@ -1,6 +1,7 @@
 @extends('admin.layouts.admin')
 @section('title')
 <title>API</title>
+
 @endsection
 @section('content')
     <div class="mt-5 mr-3">
@@ -54,15 +55,17 @@
 
                             <td>
                                 {{-- <button class="btn btn-primary" onclick="myFunction()">Copy URI key</button> --}}
-                                <button class="btn btn-dark" type="button" onclick="copyEvent('copy_{{ $key_items->id }}')">Copy Uri API</button>
+                                <button title="Copy api" class="black" type="button" onclick="copyEvent('copy_{{ $key_items->id }}')"><i class="bi bi-pass"></i></button>
                                 <a
+                                    title="Update"
                                     href="{{ route('newapi.edit', ['id'=>$key_items->id]) }}"
-                                    class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                    class="blue "><i class="fa fa-edit"></i></a>&nbsp
                                 <a
+                                    title="Delete"
                                     href="{{ route('newapi.destroy', ['id'=>$key_items->id]) }}"
                                     data-url=""
                                     onclick="return confirm('Are you sure you want to delete this item?');"
-                                    class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                    class="red action_delete "><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
 

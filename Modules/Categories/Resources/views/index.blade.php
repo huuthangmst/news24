@@ -49,19 +49,21 @@
                         <td>{{ $categories_items->name }}</td>
                         
                         @if ($categories_items->enable == 1)
-                            <td>Enable</td>
+                            <td title="Enable" class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td>Disable</td>
+                            <td title="Disable" class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         <td>
                             <a
+                                title="Update"
                                 href="{{ route('categories.edit', ['id'=>$categories_items->id]) }}"
-                                class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                class="blue"><i class="fa fa-edit"></i></a>&nbsp
                             <a
+                                title="Delete"
                                 href="{{ route('categories.destroy', ['id'=>$categories_items->id]) }}"
                                 data-url=""
                                 onclick="return confirm('Are you sure you want to delete this item?');"
-                                class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                class="red action_delete "><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     

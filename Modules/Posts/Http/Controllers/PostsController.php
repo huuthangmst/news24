@@ -55,13 +55,12 @@ class PostsController extends Controller
 
     public function store(CreatePostRequest $request)
     {
-        
+
         $auth = Auth::user()->user_type;
-        if($auth == 1) // is admin
+        if ($auth == 1) // is admin
         {
             $en = $request->enable;
-        }
-        else{
+        } else {
             $en = 0;
         }
         $dataPostCreate = [
@@ -74,8 +73,8 @@ class PostsController extends Controller
             'enable' => $en,
             'slug' => Str::slug($request->title)
         ];
-        
-        
+
+
         //dd($dataPostCreate);
         // data image upload
         $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'posts');
@@ -85,7 +84,7 @@ class PostsController extends Controller
             $dataPostCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
             $dataPostCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
         }
-        
+
         // dd($dataPostCreate);
         $this->posts->create($dataPostCreate);
 
@@ -93,18 +92,20 @@ class PostsController extends Controller
         $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
         //dd($id_post);
         $data_check = [
-            'post_id'=>$id_post,
-            'description_check'=>null,
-            'enable'=>1
+            'post_id' => $id_post,
+            'description_check' => null,
+            'enable' => 1
         ];
-        
-        $this->check_post->create($data_check);
-        
-        $user_type = (Auth::user());
-        if($user_type->user_type == 0){
-            return redirect()->route('guest.index');
+
+        $toast = $this->check_post->create($data_check);
+        if($toast){
+            toast('Created Post Successfully!','success','top-right');
         }
-        else{
+
+        $user_type = (Auth::user());
+        if ($user_type->user_type == 0) {
+            return redirect()->route('guest.index');
+        } else {
             return redirect()->route('posts.index');
         }
     }
@@ -134,12 +135,11 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $auth = Auth::user()->user_type;
-        if($auth == 1) // is admin
+        if ($auth == 1) // is admin
         {
             $en = $request->enable;
             $user_id = $request->user_id;
-        }
-        else{
+        } else {
             $en = 0;
             $user_id = Auth::id();
         }
@@ -161,27 +161,28 @@ class PostsController extends Controller
             $dataPostUpdate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
         }
 
-        $this->posts->find($id)->update($dataPostUpdate);
-        $user_type = (Auth::user());
-        if($user_type->user_type == 0){
-            return redirect()->route('guest.index');
+        $toast = $this->posts->find($id)->update($dataPostUpdate);
+        if($toast){
+            toast('Updated Successfully!','success','top-right');
         }
-        else{
+        $user_type = (Auth::user());
+        if ($user_type->user_type == 0) {
+            return redirect()->route('guest.index');
+        } else {
             return redirect()->route('posts.index');
         }
     }
 
     public function destroy($id)
     {
-        $a=$this->posts->find($id)->delete();
-        if($a){
-            toast('Deleted Successfully!','success','top-right');
+        $a = $this->posts->find($id)->delete();
+        if ($a) {
+            toast('Deleted Successfully!', 'success', 'top-right');
         }
         $user_type = (Auth::user());
-        if($user_type->user_type == 0){
+        if ($user_type->user_type == 0) {
             return redirect()->route('guest.index');
-        }
-        else{
+        } else {
             return redirect()->route('posts.index');
         }
     }
@@ -228,7 +229,8 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function check($id){
+    public function check($id)
+    {
         $au = Auth::user();
         $dataPost = $this->posts->find($id);
         $dataTopic = $this->topics->all();
@@ -236,13 +238,13 @@ class PostsController extends Controller
         return view('posts::check', compact('dataTopic', 'dataPost', 'au'));
     }
 
-    public function checked(Request $request, $id){
+    public function checked(Request $request, $id)
+    {
         $auth = Auth::user()->user_type;
-        if($auth == 1) // is admin
+        if ($auth == 1) // is admin
         {
             $en = $request->enable;
-        }
-        else{
+        } else {
             $en = 0;
         }
         $dataPostUpdate = [
@@ -264,9 +266,9 @@ class PostsController extends Controller
         }
         //
         $data_check = [
-            'post_id'=>$id,
-            'description_check'=>$request->description_check,
-            'enable'=>1
+            'post_id' => $id,
+            'description_check' => $request->description_check,
+            'enable' => 1
         ];
         //dd($dataPostUpdate);
         $this->posts->find($id)->update($dataPostUpdate);
@@ -275,10 +277,9 @@ class PostsController extends Controller
         // dd($o);
         $this->check_post->find($o)->update($data_check);
         $user_type = (Auth::user());
-        if($user_type->user_type == 0){
+        if ($user_type->user_type == 0) {
             return redirect()->route('guest.index');
-        }
-        else{
+        } else {
             return redirect()->route('posts.index');
         }
     }
