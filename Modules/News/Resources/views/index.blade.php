@@ -1,6 +1,18 @@
 @extends('client.layouts.client')
 @section('title')
     <title>News -Trang chủ</title>
+    <style>
+        a.topic {
+            box-shadow: inset 0 0 0 0 #eb4545;
+            color: #eb4545;
+            margin: 0 -.25rem;
+            padding: 0 .25rem;
+            transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+            }
+        a.topic:hover {
+            box-shadow: inset 100px 0 0 0 #eb4545;
+            color: white;
+        }
     </style>
 @endsection
 @section('content')
@@ -175,7 +187,7 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         @foreach ($da->topics as $to)
-                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link topic text-dark" id="nav-profile-tab" data-toggle="tab"
                                             href="#nav-profile" role="tab" aria-controls="nav-profile"
                                             aria-selected="false">{{ $to->name }}</a>
                                         @endforeach
@@ -357,5 +369,4 @@
     </div>
     <!-- End pagination  -->
 </main>
-
 @endsection

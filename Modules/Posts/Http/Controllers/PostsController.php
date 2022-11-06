@@ -163,6 +163,16 @@ class PostsController extends Controller
         }
 
         $toast = $this->posts->find($id)->update($dataPostUpdate);
+
+        $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
+        //dd($id_post);
+        $data_check = [
+            'post_id' => $id_post,
+            'description_check' => null,
+            'enable' => 0
+        ];
+
+        $this->check_post->updateOrCreate($data_check);
         if($toast){
             toast('Updated Successfully!','success','top-right');
         }

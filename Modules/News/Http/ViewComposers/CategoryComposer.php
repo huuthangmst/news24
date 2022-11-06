@@ -21,9 +21,9 @@ class CategoryComposer
         $data_Categories = json_decode($this->categories->with('topics')->get());
         $post_disable = json_decode(Posts::where('enable', 0)->with('post_user')->with('post_check')->get());
         // count check post enable
-        $check_count = json_decode(Posts::where('enable', 0)->whereRelation('post_check', 'enable', '=', 1)->get());
+        $check_count = json_decode(Posts::where('enable', 0)->whereRelation('post_check', 'enable', '=', 1)->whereRelation('post_check', 'description_check', '!=', null)->get());
         //dd($check_count);
-        if(auth()->check()){
+        if (auth()->check()) {
             // get day
             $date = date('Y-m-d H:i:s');
 
@@ -38,12 +38,11 @@ class CategoryComposer
                     ->get()
             );
             $view->with('data_Categories', $data_Categories)
-            ->with('date', $date)
-            ->with('post_disable', $post_disable)
-            ->with('checked_posts', $checked_posts)
-            ->with('check_count', $check_count);
-        }
-        else{
+                ->with('date', $date)
+                ->with('post_disable', $post_disable)
+                ->with('checked_posts', $checked_posts)
+                ->with('check_count', $check_count);
+        } else {
             // get day
             $date = date('Y-m-d H:i:s');
 
@@ -51,7 +50,7 @@ class CategoryComposer
             $view->with('data_Categories', $data_Categories)
                 ->with('date', $date)
                 ->with('post_disable', $post_disable);
-                // ->with('checked_posts', $checked_posts);
+            // ->with('checked_posts', $checked_posts);
         }
 
 

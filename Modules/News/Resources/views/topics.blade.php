@@ -1,6 +1,36 @@
 @extends('client.layouts.client')
 @section('title')
 <title>Topic</title>
+<style>
+    .animate-charcter
+    {
+        /* text-transform: uppercase; */
+        background-image: linear-gradient(
+            -225deg,
+            #d41f1f 0%,
+            #5b58f7 29%,
+            #ff1361 67%,
+            #fff800 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 50% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 2s linear infinite;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
+    }
+</style>
 @endsection
 @section('content')
 <main>
@@ -41,7 +71,20 @@
                                 <nav>                                                                     
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         @foreach ($topics_data->topics as $topic_item)
-                                        <a class="nav-item nav-link text-dark" href="{{ route('news.topics', ['slug'=>$topic_item->slug]) }}" role="tab" aria-controls="nav-contact" aria-selected="true">{{ $topic_item->name }}</a>
+                                        @if ($topic_item->slug == $slug)
+                                            <p class='animate-charcter'><a class=" nav-item " 
+                                                href="{{ route('news.topics', ['slug'=>$topic_item->slug]) }}" 
+                                                role="tab" aria-controls="nav-contact" 
+                                                aria-selected="true">{{ $topic_item->name }}
+                                            </a></p>
+                                        @else
+                                            <a class="nav-item nav-link text-dark" 
+                                                href="{{ route('news.topics', ['slug'=>$topic_item->slug]) }}" 
+                                                role="tab" aria-controls="nav-contact" 
+                                                aria-selected="true">{{ $topic_item->name }}
+                                            </a>
+                                        @endif
+                                        
                                         @endforeach
                                         
                                     </div>

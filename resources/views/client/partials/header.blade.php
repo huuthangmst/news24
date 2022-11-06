@@ -25,67 +25,41 @@
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4">
-                            {{-- <div class="column">
-                                <button type="button" class="btn btn-primary">Login</button>
-                                <button type="button" class="btn btn-primary">Register</button>
-                            </div> --}}
-                            {{-- <ul class="navbar-nav ms-auto">
-                                <!-- Authentication Links -->
-                                @guest
-                                @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @endif
-
-                                @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        Hello, {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu float-left" aria-labelledby="navbarDropdown">
-                                        @if ((Auth::user()->user_type)==0)
-                                        <a class="dropdown-item text-dark" href="/guest">Post</a>
-                                        @else
-                                        <a class="dropdown-item text-dark" href="/dashboard">Dashboard</a>
-                                        @endif
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endguest
-                            </ul> --}}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="header-bottom header-sticky">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12 col-md-12">
-                            <!-- sticky -->
-                            {{-- <div class="sticky-logo">
-                                <a href="index.html"><img src="" alt=""></a>
-                            </div> --}}
+                    <div class="row align-items-center col-md-12">
+                        <div class="col-lg-9 col-md-9">
+                            <!-- Main-menu -->
+                            <div class="main-menu d-none d-md-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        @foreach ($data_Categories as $cate_item)
+                                            <li><a href="{{ route('news.categories', ['slug'=>$cate_item->slug]) }}">{{ $cate_item->name }}</a>
+                                                <ul class="submenu">
+                                                    @foreach ($cate_item->topics as $topic_item)
+                                                        @if($topic_item != null)
+                                                            <li><a href="{{ route('news.topics', ['slug'=>$topic_item->slug])}}">{{ $topic_item->name }}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                    
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                        
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
                             <!-- Main-menu -->
                             <div class="main-menu d-none d-md-block">
                                 <nav>
                                     <ul id="navigation" class='row'>
-                                        <div class='col-xl-9 col-lg-9 col-md-9'>
+                                        {{-- <div class='col-xl-9 col-lg-9 col-md-9'>
                                             @foreach ($data_Categories as $cate_item)
                                             <li><a
                                                     href="{{ route('news.categories', ['slug'=>$cate_item->slug]) }}">{{ $cate_item->name }}</a>
@@ -99,22 +73,8 @@
                                                 </ul>
                                             </li>
                                             @endforeach
-                                        </div>
-
-                                        {{-- <li><a href="index.html"></a></li>
-                                        <li><a href="categori.html">Category</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="latest_news.html">Latest News</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="#">Pages</a>
-                                            <ul class="submenu">
-                                                <li><a href="elements.html">Element</a></li>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                                <li><a href="details.html">Categori Details</a></li>
-                                            </ul>
-                                        </li> --}}
-                                        <div class='col-xl-3 col-lg-3 col-md-3'>
+                                        </div> --}}
+                                        <div class='col-xl-12 col-lg-12 col-md-12'>
                                         @guest
                                             @if (Route::has('login'))
                                             <li class="nav-item">
@@ -128,7 +88,7 @@
                                             </li>
                                             @endif
                                             @else
-                                            <div class="nav-item dropdown mt-4">
+                                            <div class="nav-item dropdown">
                                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                                     Hello, {{ Auth::user()->name }}

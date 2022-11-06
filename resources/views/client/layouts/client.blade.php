@@ -132,6 +132,7 @@
     @include('client.partials.footer')
 
     <!-- JS here -->
+    
     {{-- thông báo --}}
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- All JS Custom Plugins Link Here here -->
@@ -152,10 +153,10 @@
     <script src="{{ asset('news_templates/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('news_templates/assets/js/animated.headline.js') }}"></script>
     <script src="{{ asset('news_templates/assets/js/jquery.magnific-popup.js') }}"></script>
-
+    <script src="{{ asset('news_templates/assets/js/site.js') }}"></script>
     <!-- Breaking New Pluging -->
     <script src="{{ asset('news_templates/assets/js/jquery.ticker.js') }}"></script>
-    <script src="{{ asset('news_templates/assets/js/site.js') }}"></script>
+    
 
     <!-- Scrollup, nice-select, sticky -->
     <script src="{{ asset('news_templates/assets/js/jquery.scrollUp.min.js') }}"></script>

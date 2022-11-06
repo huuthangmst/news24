@@ -32,7 +32,7 @@
                             <i class="fa fa-bell"></i>
                             @foreach ($post_disable as $disable)
                                 @if ($disable->post_check->enable == 1 )
-                                    <span class="badge bg-red">{{ count($check_count) }}</span>
+                                    <span class="badge bg-red">{{ count($check_count) }}</span>                                
                                 @endif
                             @endforeach
                         @else

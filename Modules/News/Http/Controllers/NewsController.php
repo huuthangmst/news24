@@ -193,7 +193,10 @@ class NewsController extends Controller
 
         $categories_data = json_decode($this->topics->with('postss')->where('slug', $slug)->first()); //cate có nhiều posts
         //dd($categories_data);
-        return view('news::topics', compact('categories_data', 'topics_data', 'name'));
+        $url = url()->current();
+        $slugs = explode("/", $url);
+        $slug = $slugs[4];
+        return view('news::topics', compact('categories_data', 'topics_data', 'name', 'slug'));
     }
 
 
