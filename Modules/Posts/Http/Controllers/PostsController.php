@@ -76,7 +76,7 @@ class PostsController extends Controller
         ];
 
 
-        //dd($dataPostCreate);
+        // dd($dataPostCreate);
         // data image upload
         $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'posts');
 
@@ -88,7 +88,7 @@ class PostsController extends Controller
 
         // dd($dataPostCreate);
         $this->posts->create($dataPostCreate);
-        
+
 
         // get id post
         $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
@@ -100,8 +100,8 @@ class PostsController extends Controller
         ];
 
         $toast = $this->check_post->create($data_check);
-        if($toast){
-            toast('Created Post Successfully!','success','top-right');
+        if ($toast) {
+            toast('Created Post Successfully!', 'success', 'top-right');
         }
 
         $user_type = (Auth::user());
@@ -174,8 +174,8 @@ class PostsController extends Controller
         ];
 
         $this->check_post->updateOrCreate($data_check);
-        if($toast){
-            toast('Updated Successfully!','success','top-right');
+        if ($toast) {
+            toast('Updated Successfully!', 'success', 'top-right');
         }
         $user_type = (Auth::user());
         if ($user_type->user_type == 0) {
@@ -214,40 +214,39 @@ class PostsController extends Controller
 
         $item = json_decode($data->body());
 
-        $i = collect($item->articles)->random(10);
+        $i = collect($item->articles)->random(5);
 
-        $limit = $i->take(5);   // take limited 5 items
+        //$limit = $i->take(5);   // take limited 5 items
 
-        $decode = json_decode($limit);
+        $decode = json_decode($i);
 
         //dd($decode);
 
-        $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
+        foreach ($decode as $post) {
+            $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
             $t = $array[array_rand($array, 1)];
             $id_topic = $this->topics->where('slug', $t)->first()->id;
-
-        foreach ($decode as $post) {
-            $ite = (array)$post;
-            dd($ite['description']);
+            $ite = $post;
+            //dd($ite);
             // create post 
             $dataPost = [
-                'description' => $ite['description'],
-                'content' => $ite['content'],
+                'title' => $ite->title,
+                'description' => $ite->description,
+                'content' => $ite->content,
                 'topic_id' => $id_topic,
                 'post_type' => $request->type,
                 'user_id' => Auth::id(),
                 'enable' => '1',
-                'feature_image_path' => $ite['urlToImage'],
-                'slug' => Str::slug($ite['title'])
+                'feature_image_path' => $ite->urlToImage,
+                'slug' => Str::slug($ite->title)
             ];
-            
+            // dd($dataPost);
             $toast = $this->posts->firstOrCreate(
-                ['title' => $ite['title']], [
+                ['title'=>$ite->title],
                     $dataPost
-                ]
             );
-            if($toast){
-                toast('Get Post with API Successfully!','success','top-right');
+            if ($toast) {
+                toast('Get Post with API Successfully!', 'success', 'top-right');
             }
         }
         return redirect()->route('posts.index');
@@ -296,8 +295,8 @@ class PostsController extends Controller
         ];
         //dd($dataPostUpdate);
         $toast = $this->posts->find($id)->update($dataPostUpdate);
-        if($toast){
-            toast('Updated Successfully!','success','top-right');
+        if ($toast) {
+            toast('Updated Successfully!', 'success', 'top-right');
         }
         // get id check table
         $o = json_decode($this->check_post->with('post')->where('post_id', $id)->first()->id);
