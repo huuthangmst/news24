@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('news_templates/assets/css/style.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     {{-- rating --}}
     <style>
         .zoom {

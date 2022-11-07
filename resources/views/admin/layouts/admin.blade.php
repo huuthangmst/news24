@@ -52,6 +52,9 @@
           -webkit-box-orient: vertical;
           padding-top: 15px;
         }
+    th, td {
+      text-align: center;
+    }
     </style>
   </head>
 

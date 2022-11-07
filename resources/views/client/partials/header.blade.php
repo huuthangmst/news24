@@ -38,6 +38,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         @foreach ($data_Categories as $cate_item)
+                                            
                                             <li><a href="{{ route('news.categories', ['slug'=>$cate_item->slug]) }}">{{ $cate_item->name }}</a>
                                                 <ul class="submenu">
                                                     @foreach ($cate_item->topics as $topic_item)
@@ -78,13 +79,13 @@
                                         @guest
                                             @if (Route::has('login'))
                                             <li class="nav-item">
-                                                <a class="nav-link text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                                <a class="nav-link text-dark" href="{{ route('login') }}"><i class="bi bi-box-arrow-left text-primary"></i> {{ __('Login') }}</a>
                                             </li>
                                             @endif
 
                                             @if (Route::has('register'))
                                             <li class="nav-item">
-                                                <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                <a class="nav-link text-dark" href="{{ route('register') }}"><i class="bi bi-person-fill text-primary"></i>{{ __('Register') }}</a>
                                             </li>
                                             @endif
                                             @else

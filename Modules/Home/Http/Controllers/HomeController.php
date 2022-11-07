@@ -143,7 +143,7 @@ class HomeController extends Controller
         // dd(json_decode($postData));
 
         // High chart count post follow month
-        $post = Posts::select('id', 'created_at')
+        $post = Posts::select('id', 'created_at')->where('enable', 1)
         ->get()
         ->groupBy(function($date) {
             //return Carbon::parse($date->created_at)->format('Y'); // grouping by years

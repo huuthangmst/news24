@@ -46,16 +46,16 @@ class NewsController extends Controller
     {
         // Công nghệ
         //$tech = json_decode($this->posts->with('topics')->where('topic_id', 4)->latest()->first());
-        $tech = json_decode($this->categories->with('postss')->where('slug', 'cong-nghe')->first()->postss->sortByDesc('id')->first());
+        $tech = json_decode($this->categories->with('postss')->where('slug', 'cong-nghe')->first()->postss->sortByDesc('id')->where('enable',1)->first());
         //dd($tech);
 
         // Giải trí
         //$ent = json_decode($this->posts->where('topic_id', 1)->latest()->first());
-        $ent = json_decode($this->categories->with('postss')->where('slug', 'giai-tri')->first()->postss->sortByDesc('id')->first());
+        $ent = json_decode($this->categories->with('postss')->where('slug', 'giai-tri')->first()->postss->sortByDesc('id')->where('enable',1)->first());
 
         // Thời sự
         //$new = json_decode($this->posts->where('topic_id', 6)->latest()->first());
-        $new = json_decode($this->categories->with('postss')->where('slug', 'thoi-su')->first()->postss->sortByDesc('id')->first());
+        $new = json_decode($this->categories->with('postss')->where('slug', 'thoi-su')->first()->postss->sortByDesc('id')->where('enable',1)->first());
         //dd($new);
 
         $first_post = $this->posts->where('enable', 1)->latest()->first();
@@ -64,8 +64,11 @@ class NewsController extends Controller
         //dd(json_decode($posts_data));
 
         // get post follow topic
-        $data_content = json_decode($this->categories->with('postss')->with('topics')->get());
-        //dd($data_content);
+        $data_content = $this->categories->with('postss')->with('topics')->get()->map(function($post) {
+            $post->setRelation('postss', $post->postss->take(4));
+            return $post;
+        });
+        //dd(json_decode($data_content));
 
         //
         if(Auth::check()){
@@ -80,7 +83,7 @@ class NewsController extends Controller
         }
 
         // get 50 post
-        $posts_50data = json_decode($this->posts->with('post_view')->where('enable', 1)->skip(0)->take(10)->get());
+        $posts_50data = json_decode($this->posts->with('post_view')->where('enable', 1)->skip(0)->take(15)->get());
 
         // week
         $now = Carbon::now();

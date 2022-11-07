@@ -35,6 +35,7 @@ class PostsController extends Controller
     public function index()
     {
         $dataPosts = $this->posts->latest()->paginate(5);
+        // dd($dataPosts);
         return view('posts::index', compact('dataPosts'));
     }
 
@@ -223,18 +224,21 @@ class PostsController extends Controller
             $ite = (array)$post;
 
             // create post 
+            $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
+            $t = $array[array_rand($array, 1)];
+            $id_topic = $this->topics->where('slug', $t)->first()->id;
             $dataPost = [
                 'title' => $ite['title'],
                 'description' => $ite['description'],
                 'content' => $ite['content'],
-                'topic_id' => '1',
+                'topic_id' => $id_topic,
                 'post_type' => $request->type,
                 'user_id' => '1',
                 'enable' => '1',
                 'feature_image_path' => $ite['urlToImage'],
-                'slug' => Str::slug($request->title)
+                'slug' => Str::slug($ite['title'])
             ];
-            //dd($dataPost);
+            
             $toast = $this->posts->firstOrCreate($dataPost);
             if($toast){
                 toast('Get Post with API Successfully!','success','top-right');
@@ -285,7 +289,10 @@ class PostsController extends Controller
             'enable' => 1
         ];
         //dd($dataPostUpdate);
-        $this->posts->find($id)->update($dataPostUpdate);
+        $toast = $this->posts->find($id)->update($dataPostUpdate);
+        if($toast){
+            toast('Updated Successfully!','success','top-right');
+        }
         // get id check table
         $o = json_decode($this->check_post->with('post')->where('post_id', $id)->first()->id);
         // dd($o);

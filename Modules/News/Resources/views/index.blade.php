@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="weekly-caption">
                                         <span class="color1">Top news</span>
-                                        <h4><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}">{{$post->title}}</a></h4>
+                                        <h4><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}</a></h4>
                                     </div>
                                 </div>
                             @endforeach

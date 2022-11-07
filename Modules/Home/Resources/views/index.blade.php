@@ -296,7 +296,7 @@
     var year = <?php echo $year?>;
     Highcharts.chart('container', {
         title: {
-            text: `Statistics of posts by month, ${year}`,  
+            text: `Statistics of posts enable by month, ${year}`,  
         },
         xAxis: {
             categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',

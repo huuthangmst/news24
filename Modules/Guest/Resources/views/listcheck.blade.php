@@ -55,7 +55,7 @@
                         
                     <tr>
                         <th scope="row">{{ $posts_items->id }}</th>
-                        <th><img src="{{ $posts_items->feature_image_path }}" height="50" width="50"></th>
+                        <th><img src="{{ $posts_items->feature_image_path }}" height="90px" width="100px"></th>
                         <td>{{ $posts_items->title }}</td>
                         {{-- @forelse($var ?? [] as $varItem)
 
@@ -80,9 +80,9 @@
                         @endif --}}
                         
                         @if ($posts_items->enable == 1)
-                            <td>Enable</td>
+                            <td title="Enable" class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td>Disable</td>
+                            <td title="Disable" class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         {{-- @if ($dataPosts->check2[0]->description_check == '')
                             <td>null</td>
@@ -106,9 +106,9 @@
                 </tbody>
             </table>          
         </div>
-        {{-- <div class="col-md-6">
-            <p>{{ $dataCategories->links() }}</p>
-        </div>  --}}
+        <div class="col-md-6">
+            <p>{{ $dataPost->links() }}</p>
+        </div> 
     </div>
 </div>
 

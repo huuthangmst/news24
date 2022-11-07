@@ -62,7 +62,7 @@
                         <th><img src="{{ $posts_items->feature_image_path }}" height="80" width="90"></th>
                         <td class="text">{{ $posts_items->title }}</td>
                         <td class="text-concat">{{ $posts_items->description }}</td>
-                        <td>{{ $posts_items->user_id }}</td>
+                        <td>{{optional($posts_items->post_user)->name }}</td>
                         <td>{{optional($posts_items->topics)->name}}</td>
                         <td>{{optional($posts_items->topics->categories)->name}}</td>
                         @if ($posts_items->post_type == 1)

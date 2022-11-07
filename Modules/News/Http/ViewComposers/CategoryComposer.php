@@ -18,10 +18,12 @@ class CategoryComposer
     public function compose(View $view)
     {
         // get all category
-        $data_Categories = json_decode($this->categories->with('topics')->get());
+        $data_Categories = json_decode($this->categories->with('topics')->where('enable', 1)->get());
+        //dd($data_Categories);
         $post_disable = json_decode(Posts::where('enable', 0)->with('post_user')->with('post_check')->get());
+        //dd($post_disable);
         // count check post enable
-        $check_count = json_decode(Posts::where('enable', 0)->whereRelation('post_check', 'enable', '=', 1)->whereRelation('post_check', 'description_check', '!=', null)->get());
+        $check_count = json_decode(Posts::where('enable', 0)->whereRelation('post_check', 'enable', '=', 1)->whereRelation('post_check', 'description_check', '=', null)->get());
         //dd($check_count);
         if (auth()->check()) {
             // get day

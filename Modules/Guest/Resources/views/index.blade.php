@@ -56,11 +56,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($dataPosts->post_list as $posts_items)
+                    @foreach ($dataPosts as $posts_items)
                         
                     <tr>
                         <th scope="row">{{ $posts_items->id }}</th>
-                        <th><img src="{{ $posts_items->feature_image_path }}" height="50" width="50"></th>
+                        <th><img height="90px" width="100px" src="{{ $posts_items->feature_image_path }}"></th>
                         <td>{{ $posts_items->title }}</td>
                         <td>{{ $posts_items->description }}</td>
                         {{-- <td>{{ $posts_items->user_id }}</td> --}}
@@ -73,9 +73,9 @@
                         @endif --}}
                         
                         @if ($posts_items->enable == 1)
-                            <td>Enable</td>
+                            <td title="Enable" class="green"><i class="fa fa-check-circle"></i></td>
                         @else
-                            <td>Disable</td>
+                            <td title="Disable" class="red"><i class="bi bi-x-circle-fill"></i></td>
                         @endif
                         {{-- @if ($dataPosts->check2[0]->description_check == '')
                             <td>null</td>
@@ -85,13 +85,15 @@
                         
                         <td>
                             <a
+                                title="Update"
                                 href="{{ route('posts.check', ['id'=>$posts_items->id]) }}"
-                                class="btn btn-primary "><i class="fa fa-edit"></i></a>
+                                class="blue "><i class="fa fa-edit"></i></a>
                             <a
+                                title="Delete"
                                 href="{{ route('posts.destroy', ['id'=>$posts_items->id]) }}"
                                 data-url=""
                                 onclick="return confirm('Are you sure you want to delete this item?');"
-                                class="btn btn-danger action_delete "><i class="fa fa-trash"></i></a>
+                                class="red action_delete "><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     
@@ -99,9 +101,9 @@
                 </tbody>
             </table>          
         </div>
-        {{-- <div class="col-md-6">
-            <p>{{ $dataCategories->links() }}</p>
-        </div>  --}}
+        <div class="col-md-6">
+            <p>{{ $dataPosts->links() }}</p>
+        </div> 
     </div>
 </div>
 

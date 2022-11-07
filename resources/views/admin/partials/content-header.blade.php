@@ -1,6 +1,6 @@
 @if(Auth::user()->user_type == 1)
     @foreach ($post_disable as $disable)
-        @if ($disable->post_check->enable == 1)
+        @if ($disable->post_check->enable == 1 && $disable->post_check->description_check == null)
             <li class="nav-item">
                 <a href="{{ route('posts.check', ['id'=>$disable->id]) }}" class="dropdown-item">
                     <span class="image"><img src="{{ $disable->feature_image_path}}" /></span>

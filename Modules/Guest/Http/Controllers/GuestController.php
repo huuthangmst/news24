@@ -28,17 +28,17 @@ class GuestController extends Controller
     public function index()
     {
         $auth_id = Auth::user()->id;
-        $dataPosts = json_decode($this->user_post->with('post_list')->where('id', $auth_id)->first());
+        $dataPosts = $this->posts->where('user_id', $auth_id)->paginate(5);
         // $g = $dataPosts->post_list;
         //$data_check = json_decode($)
-        // dd($g);
+        //dd($dataPosts);
         return view('guest::index', compact('dataPosts'));
     }
 
     public function list_check()
     {
         $auth_id = Auth::user()->id;
-        $dataPost = json_decode($this->posts->with('post_user')->with('post_check')->where('user_id', $auth_id)->orderBy('id','desc')->get());
+        $dataPost = ($this->posts->with('post_user')->with('post_check')->where('user_id', $auth_id)->orderBy('id','desc')->paginate(5));
         //dd($dataPost);
         return view('guest::listcheck', compact('dataPost'));
     }

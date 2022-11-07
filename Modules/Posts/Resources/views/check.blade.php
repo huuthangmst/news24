@@ -133,11 +133,11 @@
                         </div>
 
                         {{-- writer --}}
-                        {{-- <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Writer</span>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"></span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input  type="text" name="user_id" value="{{$dataPost->user_id}}"
+                                <input type="hidden" type="text" name="user_id" value="{{$dataPost->user_id}}"
                                     class="form-control @error('user_id') is-invalid @enderror">
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                             @error('user_id')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         @if (($au->user_type)==1)
                             <div class="item form-group">
