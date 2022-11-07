@@ -208,38 +208,44 @@ class PostsController extends Controller
 
     public function getApi(Request $request)
     {
-        $url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=87384f1c2fe94e11a76b2f6ff11b337f";
+        $url = "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=87384f1c2fe94e11a76b2f6ff11b337f";
 
         $data = Http::get($url);
 
         $item = json_decode($data->body());
 
-        $i = collect($item->articles);
+        $i = collect($item->articles)->random(10);
 
         $limit = $i->take(5);   // take limited 5 items
 
         $decode = json_decode($limit);
 
-        foreach ($decode as $post) {
-            $ite = (array)$post;
+        //dd($decode);
 
-            // create post 
-            $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
+        $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
             $t = $array[array_rand($array, 1)];
             $id_topic = $this->topics->where('slug', $t)->first()->id;
+
+        foreach ($decode as $post) {
+            $ite = (array)$post;
+            dd($ite['description']);
+            // create post 
             $dataPost = [
-                'title' => $ite['title'],
                 'description' => $ite['description'],
                 'content' => $ite['content'],
                 'topic_id' => $id_topic,
                 'post_type' => $request->type,
-                'user_id' => '1',
+                'user_id' => Auth::id(),
                 'enable' => '1',
                 'feature_image_path' => $ite['urlToImage'],
                 'slug' => Str::slug($ite['title'])
             ];
             
-            $toast = $this->posts->firstOrCreate($dataPost);
+            $toast = $this->posts->firstOrCreate(
+                ['title' => $ite['title']], [
+                    $dataPost
+                ]
+            );
             if($toast){
                 toast('Get Post with API Successfully!','success','top-right');
             }
