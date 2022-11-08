@@ -28,7 +28,7 @@ class GuestController extends Controller
     public function index()
     {
         $auth_id = Auth::user()->id;
-        $dataPosts = $this->posts->where('user_id', $auth_id)->paginate(5);
+        $dataPosts = $this->posts->where('user_id', $auth_id)->orderBy('id','desc')->paginate(5);
         // $g = $dataPosts->post_list;
         //$data_check = json_decode($)
         //dd($dataPosts);

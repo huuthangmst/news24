@@ -13,6 +13,10 @@
             box-shadow: inset 100px 0 0 0 #eb4545;
             color: white;
         }
+        .responsive {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 @endsection
 @section('content')
@@ -211,7 +215,7 @@
                                                 <div class="col-lg-6 col-md-6" data-aos="zoom-in-down">
                                                     <div class="single-what-news mb-100">
                                                         <div class="hover15">
-                                                            <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><figure><img width="300px" height="200px" src="{{ $po->feature_image_path }}" alt=""></figure></a>
+                                                            <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><figure><img width="330px" height="200px" src="{{ $po->feature_image_path }}" alt=""></figure></a>
                                                         </div>
                                                         <div class="what-cap">
                                                             <h4><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{ $po->title }}</a>

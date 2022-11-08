@@ -2,6 +2,12 @@
 
 @section('title')
 <title>Edit Post</title>
+<style>
+    #paragraph, #paragraph2
+    {
+        display:none;
+    }
+</style>
 @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -74,14 +80,14 @@
                             @enderror
                         </div>
 
-                        <div class="item form-group">
+                        {{-- <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Image Url</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="text" name="" value="{{$dataPost->feature_image_path}}"
                                     class="form-control">
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- avatar --}}
                         <div class="item form-group">
                             <label class='col-form-label col-md-3 col-sm-3 label-align'>Avatar</span></label>
@@ -154,12 +160,12 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Enable</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-secondary" data-toggle-class="btn-primary"
+                                        <button onclick="display1()" class="btn btn-secondary" data-toggle-class="btn-primary"
                                             data-toggle-passive-class="btn-default">
                                             <input type="radio" name="enable" value="1" class="join-btn"> &nbsp; Enable
                                             &nbsp;
-                                        </label>
-                                        <button id="dis" class="btn btn-primary" data-toggle-class="btn-primary"
+                                        </button>
+                                        <button onclick="display2()" class="btn btn-primary" data-toggle-class="btn-primary"
                                             data-toggle-passive-class="btn-default">
                                             <input type="radio" name="enable" value="0" class="join-btn"> Disable
                                         </button>
@@ -169,13 +175,19 @@
                             {{-- @if ()
                                 
                             @endif --}}
-                            <div id="des" class="item form-group">
-                                <label class='col-form-label col-md-3 col-sm-3 label-align'>Description enable</span></label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <textarea name="description_check"
-                                        class="form-control"
-                                        rows="2"></textarea>
+                            <div id="paragraph">
+                                <div class="item form-group">
+                                    <label class='col-form-label col-md-3 col-sm-3 label-align'>Description enable</span></label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <textarea id="ena" name="description_check"
+                                            class="form-control"
+                                            required pattern="*"
+                                            rows="2"></textarea>
+                                    </div>
                                 </div>
+                            </div>
+                            <div id="paragraph2">
+                                
                             </div>
                         @endif
 
@@ -195,9 +207,20 @@
     <!-- /.content -->
 </div>
 <script>
-    $("#dis").click(function() {
-        $("#des").show();
-    });
+    function display1() {
+        var p = document.getElementById("paragraph");
+        p.style.display = "none";
+        var p = document.getElementById("paragraph2");
+        p.style.display = "block";
+        const input = document.getElementById('ena');
+
+        // Remove required attribute
+        input.removeAttribute('required');; 	 
+    }
+    function display2() {
+        var p = document.getElementById("paragraph");
+        p.style.display = "block";
+    }
 </script>
 <!-- /.content-wrapper -->
 @endsection

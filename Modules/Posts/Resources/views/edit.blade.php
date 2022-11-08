@@ -74,14 +74,14 @@
                             @enderror
                         </div>
 
-                        <div class="item form-group">
+                        {{-- <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Image Url</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input disabled type="text" name="" value="{{$dataPost->feature_image_path}}"
                                     class="form-control">
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- avatar --}}
                         <div class="item form-group">
                             <label class='col-form-label col-md-3 col-sm-3 label-align'>Avatar</span></label>
