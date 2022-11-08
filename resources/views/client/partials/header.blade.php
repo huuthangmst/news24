@@ -8,7 +8,6 @@
     <!-- Header Start -->
     <div class="header-area">
         <div class="main-header ">
-            
             <div class="header-mid d-none d-md-block">
                 <div class="container">
                     <div class="row d-flex align-items-center">
@@ -30,7 +29,19 @@
                 </div>
             </div>
             <div class="header-bottom header-sticky">
+                
                 <div class="container">
+                    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="#">Navbar</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                            
+                            </div>
+                        </div>
+                    </nav> --}}
                     <div class="row align-items-center col-md-12">
                         <div class="col-lg-9 col-md-9">
                             <!-- Main-menu -->
@@ -57,7 +68,7 @@
                         </div>
                         <div class="col-lg-3 col-md-3">
                             <!-- Main-menu -->
-                            <div class="main-menu d-none d-md-block">
+                            <div class="main-menu d-md-block">
                                 <nav>
                                     <ul id="navigation" class='row'>
                                         {{-- <div class='col-xl-9 col-lg-9 col-md-9'>
@@ -76,43 +87,43 @@
                                             @endforeach
                                         </div> --}}
                                         <div class='col-xl-12 col-lg-12 col-md-12'>
-                                        @guest
-                                            @if (Route::has('login'))
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" href="{{ route('login') }}"><i class="bi bi-box-arrow-left text-primary"></i> {{ __('Login') }}</a>
-                                            </li>
-                                            @endif
+                                            @guest
+                                                @if (Route::has('login'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" href="{{ route('login') }}"><i class="bi bi-box-arrow-left text-primary"></i> {{ __('Login') }}</a>
+                                                </li>
+                                                @endif
 
-                                            @if (Route::has('register'))
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" href="{{ route('register') }}"><i class="bi bi-person-fill text-primary"></i>{{ __('Register') }}</a>
-                                            </li>
-                                            @endif
-                                            @else
-                                            <div class="nav-item dropdown">
-                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                    Hello, {{ Auth::user()->name }}
-                                                </a>
-
-                                                <div class="dropdown-menu float-left" aria-labelledby="navbarDropdown">
-                                                    @if ((Auth::user()->user_type)==0)
-                                                    <a class="dropdown-item text-dark" href="/guest">Post</a>
-                                                    @else
-                                                    <a class="dropdown-item text-dark" href="/dashboard">Dashboard</a>
-                                                    @endif
-                                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
+                                                @if (Route::has('register'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" href="{{ route('register') }}"><i class="bi bi-person-fill text-primary"></i>{{ __('Register') }}</a>
+                                                </li>
+                                                @endif
+                                                @else
+                                                <div class="nav-item dropdown">
+                                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                        Hello, {{ Auth::user()->name }}
                                                     </a>
 
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                        class="d-none">
-                                                        @csrf
-                                                    </form>
+                                                    <div class="dropdown-menu float-left" aria-labelledby="navbarDropdown">
+                                                        @if ((Auth::user()->user_type)==0)
+                                                        <a class="dropdown-item text-dark" href="/guest">Post</a>
+                                                        @else
+                                                        <a class="dropdown-item text-dark" href="/dashboard">Dashboard</a>
+                                                        @endif
+                                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                            document.getElementById('logout-form').submit();">
+                                                            {{ __('Logout') }}
+                                                        </a>
+
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                            class="d-none">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endguest
+                                            @endguest
                                         </div>
                                     </ul>
                                 </nav>
@@ -130,9 +141,9 @@
                             </div>
                         </div> --}}
                         <!-- Mobile Menu -->
-                        <div class="col-12">
+                        {{-- <div class="col-12">
                             <div class="mobile_menu d-block d-md-none"></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
