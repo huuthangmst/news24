@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="trend-bottom-cap">
                                                 <span class="color1">Công nghệ</span>
-                                                <h4><a href="{{ route('news.detail', ['slug'=>$tech->slug])}}">{{$tech->title}}</a></h4>
+                                                <h4><a class="text" href="{{ route('news.detail', ['slug'=>$tech->slug])}}">{{$tech->title}}</a></h4>
                                             </div>
                                         @endif
                                     </div>
@@ -94,7 +94,7 @@
                                             <div class="trend-bottom-cap">
                                                 <span class="color2">Giải trí</span>
                                                 <h4>
-                                                    <h4><a href="{{ route('news.detail', ['slug'=>$ent->slug])}}">{{$ent->title}}</a></h4>
+                                                    <h4><a class="text" href="{{ route('news.detail', ['slug'=>$ent->slug])}}">{{$ent->title}}</a></h4>
                                                 </h4>
                                             </div>
                                         @endif 
@@ -108,7 +108,7 @@
                                             </div>
                                             <div class="trend-bottom-cap">
                                                 <span class="color3">Thời sự</span>
-                                                <h4><a href="{{ route('news.detail', ['slug'=>$new->slug])}}">{{$new->title}}</a>
+                                                <h4><a class="text" href="{{ route('news.detail', ['slug'=>$new->slug])}}">{{$new->title}}</a>
                                                 </h4>
                                             </div>
                                         @endif
@@ -220,7 +220,7 @@
                                                             <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><figure><img class="responsive" width="600" height="400" src="{{ $po->feature_image_path }}" alt=""></figure></a>
                                                         </div>
                                                         <div class="what-cap">
-                                                            <h4><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{ $po->title }}</a>
+                                                            <h4><a class="text2" href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{ $po->title }}</a>
                                                             </h4>
                                                         </div>
                                                     </div>
