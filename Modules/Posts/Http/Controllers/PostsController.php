@@ -248,6 +248,14 @@ class PostsController extends Controller
             if ($toast) {
                 toast('Get Post with API Successfully!', 'success', 'top-right');
             }
+            // find id check post
+            $c_id = json_decode($this->posts->where('title', $ite->title)->first()->id);
+            $data_check = [
+                'post_id' => $c_id,
+                'description_check' => null,
+                'enable' => 0
+            ];
+            $this->check_post->create($data_check);
         }
         return redirect()->route('posts.index');
     }

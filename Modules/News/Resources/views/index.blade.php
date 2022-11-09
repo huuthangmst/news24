@@ -193,9 +193,9 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         @foreach ($da->topics as $to)
-                                            <a class="nav-item nav-link topic text-dark" id="nav-profile-tab" data-toggle="tab"
-                                            href="#nav-profile" role="tab" aria-controls="nav-profile"
-                                            aria-selected="false">{{ $to->name }}</a>
+                                            <a class="nav-item nav-link topic text-dark"  
+                                            href="{{ route('news.topics', ['slug'=>$to->slug])}}" 
+                                            >{{ $to->name }}</a>
                                         @endforeach
                                     </div>
                                 </nav>
@@ -292,56 +292,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly2-news-active dot-style d-flex dot-style">
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="" alt="">
+                            @foreach ($post_week as $week)
+                                <div class="weekly2-single">
+                                    <div class="weekly2-img">
+                                        <a href="{{ route('news.detail', ['slug'=>$week->slug])}}"><img src="{{ $week->feature_image_path }}" alt=""></a>
+                                    </div>
+                                    <div class="weekly2-caption">
+                                        <span class="color1">{{ $week->topics->name }}</span>
+                                        <p>{{ date('d-m-Y', strtotime($week->created_at)) }}</p>
+                                        <h4><a class="text2" href="{{ route('news.detail', ['slug'=>$week->slug])}}">{{ $week->title }}</a></h4>
+                                    </div>
                                 </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Event night</span>
-                                    <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Event time</span>
-                                    <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model Winner Contest</a></h4>
-                                </div>
-                            </div>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>
@@ -352,7 +315,7 @@
 
 
     <!--Start pagination -->
-    <div class="pagination-area pb-45 text-center">
+    {{-- <div class="pagination-area pb-45 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -372,7 +335,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End pagination  -->
 </main>
 @endsection

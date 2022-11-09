@@ -54,6 +54,14 @@
                     line-clamp: 3; 
             -webkit-box-orient: vertical;
         }
+        .text2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+                    line-clamp: 2; 
+            -webkit-box-orient: vertical;
+        }
         .hover15 figure {
             position: relative;
         }

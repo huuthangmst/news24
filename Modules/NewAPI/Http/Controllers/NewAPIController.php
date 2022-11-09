@@ -141,7 +141,7 @@ class NewAPIController extends Controller
                     'description' => $request->description,
                     'content' => $request->content,
                     'topic_id' => $request->topic_id,
-                    'post_type' => $request->post_type,
+                    'post_type' => 1,
                     'user_id' => $request->user_id,
                     'feature_image_path'=>$request->feature_image_path,
                     'feature_image_name'=>$request->feature_image_name,
