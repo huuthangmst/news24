@@ -59,11 +59,13 @@
                                 title="Update"
                                 href="{{ route('users.edit', ['id'=>$user_items->id]) }}"
                                 class="blue "><i class="fa fa-edit"></i></a>&nbsp
+                            @if ($user_items->user_type != 1)
                             <a
                                 title="Delete"
                                 href="{{ route('users.destroy', ['id'=>$user_items->id]) }}"
                                 onclick="return confirm('Are you sure you want to delete this item?');"
                                 class="red action_delete "><i class="fa fa-trash"></i></a>
+                            @endif
                         </td>
                     </tr>
                     

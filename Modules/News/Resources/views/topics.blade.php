@@ -40,7 +40,7 @@
             <div class="trending-main">
                 <!-- Trending Tittle -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 container">
                         {{-- <div class="trending-tittle">
                             <strong>{{ $categories_data->name }}</strong>
                         </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div> --}}
                 <!-- Trending Bottom -->
-                <div class="trending-bottom">
+                <div class="trending-bottom container">
                     <div class="row">
                         {{-- @foreach ($categories_data->postss as $cate_item)
                         <div class="col-lg-4">
