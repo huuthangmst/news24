@@ -62,11 +62,14 @@
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
                             <div class="trend-top-img" data-aos="fade-down">
-                                <a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}"><img src="{{$first_post->feature_image_path}}" alt=""></a>
-                                <div class="trend-top-cap">
-                                    <span>For you!</span>
-                                    <h2><a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}">{{$first_post->title}}</a></h2>
-                                </div>
+                                @if ($first_post != null)
+                                    <a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}"><img src="{{$first_post->feature_image_path}}" alt=""></a>
+                                    <div class="trend-top-cap">
+                                        <span>For you!</span>
+                                        <h2><a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}">{{$first_post->title}}</a></h2>
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
                         <!-- Trending Bottom -->
