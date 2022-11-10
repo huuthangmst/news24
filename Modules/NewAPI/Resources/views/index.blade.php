@@ -50,7 +50,8 @@
                         <tr>
                             <th scope="row">{{ $key_items->id }}</th>
                             {{-- <td><input size="60"  value="{{ $uri }}/api/newposts?apiKey={{ $key_items->apiKey }}" disabled id="myInput"></td> --}}
-                            <td id="copy_{{ $key_items->id }}">{{ $uri }}/api/newposts?apiKey={{ $key_items->apiKey }}</td>                  
+                            {{-- <td id="copy_{{ $key_items->id }}">{{ $uri }}/api/newposts?apiKey={{ $key_items->apiKey }}</td>                   --}}
+                            <td id="copy_{{ $key_items->id }}">{{ $key_items->apiKey }}</td>
                             <td>{{optional($key_items->users)->name}}</td>
 
                             <td>

@@ -135,17 +135,21 @@ class NewAPIController extends Controller
             $checkKey = new CheckApiKey($request);
             $checkResult = $checkKey->ckeckApiKey($this->apikey);
 
+            // find id user with api key
+            $id = json_decode($this->apikey->where('apiKey', $request->apiKey)->first());
+            // dd($id);
+
             if($checkResult == true){
                 $dataPostCreate = [
                     'title' => $request->title,
                     'description' => $request->description,
                     'content' => $request->content,
                     'topic_id' => $request->topic_id,
-                    'post_type' => 1,
-                    'user_id' => $request->user_id,
+                    'post_type' => 0,
+                    'user_id' => $id->user_id,
                     'feature_image_path'=>$request->feature_image_path,
-                    'feature_image_name'=>$request->feature_image_name,
-                    'enable' => $request->enable,
+                    'feature_image_name'=>null,
+                    'enable' => 0,
                     'slug' => Str::slug($request->title)
                 ];
                 
@@ -168,7 +172,7 @@ class NewAPIController extends Controller
                     'status'=>'success',
                     'statusCode'=>200,
                     'message'=>'Create post successfully!',
-                    'data'=>$dataPostCreate
+                    'data'=>Posts::where('title', $request->title)->select(Posts::raw('title, description, content, feature_image_path'))->get()
                 ], 200);
             }
             else{
@@ -206,34 +210,40 @@ class NewAPIController extends Controller
             $checkKey = new CheckApiKey($request);
             $checkResult = $checkKey->ckeckApiKey($this->apikey);
 
+            // find id user with api key
+            $id_u = json_decode($this->apikey->where('apiKey', $request->apiKey)->first());
+
+            // check id post for user || find post with id for user
+            $che = json_decode(Posts::where('user_id', $id_u->user_id)->where('id', $id)->get());
+
             // if apiKey not exits in database
             if($checkResult == true){
                 // check id
                 $kq = $this->findId($id);
 
                 // if id post not exits in database
-                if($kq){
-                    $dataPostCreate = [
+                if($kq || $che != []){
+                    $dataPostUpdate = [
                         'title' => $request->title,
                         'description' => $request->description,
                         'content' => $request->content,
                         'topic_id' => $request->topic_id,
-                        'post_type' => $request->post_type,
-                        'user_id' => $request->user_id,
+                        'post_type' => 0,
+                        'user_id' => $id_u->user_id,
                         'feature_image_path'=>$request->feature_image_path,
-                        'feature_image_name'=>$request->feature_image_name,
-                        'enable' => $request->enable,
+                        'feature_image_name'=>null,
+                        'enable' => 0,
                         'slug' => Str::slug($request->title)
                     ];
                     
                     // create post in database
-                    $this->posts->create($dataPostCreate);
+                    $this->posts->find($id)->update($dataPostUpdate);
             
                     return response()->json([
                         'status'=>'success',
                         'statusCode'=>200,
-                        'message'=>'Create post successfully!',
-                        'data'=>$dataPostCreate
+                        'message'=>'Update post successfully!',
+                        'data'=>Posts::where('title', $request->title)->select(Posts::raw('title, description, content, feature_image_path'))->get()
                     ], 200);
                 }
                 else{

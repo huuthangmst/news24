@@ -19,12 +19,8 @@ class AddPostRequestApi extends FormRequest
             'title' => 'bail|required|unique:posts|min:3',
             'description' => 'bail|required|min:3',
             'content' => 'required',
-            'user_id' => 'required',
             'topic_id' => 'required',
-            'post_type' => 'required',
-            'enable' => 'required',
             'feature_image_path' => 'required',
-            'feature_image_name' => 'required',
         ];
     }
 
@@ -46,11 +42,7 @@ class AddPostRequestApi extends FormRequest
             'description.required' => 'Description cannot be blank',
             'description.min' => 'Description cannot be less than 3 characters',
             'content.required' => 'Content cannot be blank',
-            'user_id.required' => 'User_id cannot be blank',
-            'post_type.required' => 'post_type cannot be blank',
-            'enable.required' => 'enable cannot be blank',
             'feature_image_path.required' => 'feature_image_path cannot be blank',
-            'feature_image_name.required' => 'feature_image_name.required cannot be blank',
         ];
     }
 }
