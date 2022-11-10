@@ -111,7 +111,10 @@ class NewsController extends Controller
     {
         $slug_detail = $slug;
 
-        $posts_data = $this->posts->where('enable', 1)->latest()->skip(0)->take(10)->get(); //get first 5 rows and latest
+        $i_topic = json_decode($this->posts->where('slug', $slug)->first()->topic_id);
+        // dd($i_topic);
+
+        $posts_data = $this->posts->where('enable', 1)->where('topic_id', $i_topic)->latest()->skip(0)->take(10)->get(); // get first 5 rows and latest
         $detail = json_decode($this->posts->with('topics')->where('slug', $slug)->first());
 
         // count views vd:Post::where('slug',$slug)->increment('view_count');
