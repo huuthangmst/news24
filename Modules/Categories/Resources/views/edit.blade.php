@@ -2,6 +2,25 @@
 
 @section('title')
 <title>Update</title>
+<style>
+    .h {
+    color: #f32179;
+    padding:20px;
+    border-color: #f32179;
+    font-size: 30px;
+    transition: 0.2s;
+    background-color: transparent;
+    border-radius: 3em;
+    cursor: pointer;
+}
+
+
+    .h {
+    color: #fff;
+    background: #11b146;
+    box-shadow: 0 0 10px #11b146, 0 0 10px #11b146, 0 0 5px #11b146;
+}
+</style>
 @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -60,24 +79,40 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Enable</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-secondary" data-toggle-class="btn-primary"
-                                        data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="enable" value="1" class="join-btn"> &nbsp; Enable
-                                        &nbsp;
-                                    </label>
-                                    <label class="btn btn-primary" data-toggle-class="btn-primary"
-                                        data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="enable" value="0" class="join-btn"> Disable
-                                    </label>
-                                </div>
+                                @if ($dataCategories->enable == 1)
+                                    <div id="gender" class="btn-group" data-toggle="buttons">
+                                        <button class="btn btn-secondary" data-toggle-class="btn-primary"
+                                            data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="enable" value="1" class="join-btn" checked="checked"> &nbsp; Enable
+                                            &nbsp;
+                                        </button>
+                                        <button class="btn btn-primary" data-toggle-class="btn-primary"
+                                            data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="enable" value="0" class="join-btn"> Disable
+                                        </button>
+                                        
+                                    </div>
+                                @else
+                                    <div id="gender" class="btn-group" data-toggle="buttons">
+                                        <button class="btn btn-secondary" data-toggle-class="btn-primary"
+                                            data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="enable" value="1" class="join-btn"> &nbsp; Enable
+                                            &nbsp;
+                                        </button>
+                                        <label class="btn btn-primary" data-toggle-class="btn-primary"
+                                            data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="enable" value="0" class="join-btn" checked="checked"> Disable
+                                        </label>
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
 
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-success">Add</button>
+                                <button type="submit" class="btn btn-success">Update</button>
                                 <a href="/categories"><button class="btn btn-primary" type="button">Back</button></a>
                             </div>
                         </div>

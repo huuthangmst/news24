@@ -61,7 +61,7 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Email</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="email" value="{{ $data_user->email }}"
+                                <input type="email" name="email" value="{{ $data_user->email }}"
                                     class="form-control @error('email') is-invalid @enderror">
                             </div>
                         </div>

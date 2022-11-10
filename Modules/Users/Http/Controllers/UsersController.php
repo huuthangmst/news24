@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Users\Http\Requests\UpdateUserRequest;
 
 class UsersController extends Controller
 {
@@ -47,7 +48,7 @@ class UsersController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $data_update = [
             'name'=>$request->name,

@@ -83,12 +83,12 @@
                                 <div id="gender" class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-secondary" data-toggle-class="btn-primary"
                                         data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="enable" value="1" class="join-btn"> &nbsp; Enable
+                                        <input type="radio" name="enable" value="1" class="join-btn" required> &nbsp; Enable
                                         &nbsp;
                                     </label>
                                     <label class="btn btn-primary" data-toggle-class="btn-primary"
                                         data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="enable" value="0" class="join-btn"> Disable
+                                        <input type="radio" name="enable" value="0" class="join-btn" required> Disable
                                     </label>
                                 </div>
                             </div>
