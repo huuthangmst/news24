@@ -393,7 +393,7 @@
                                 </div><span>&emsp;</span>
                                 <div class="trand-right-cap">
                                     <span class="text-danger">News</span>
-                                    <h6><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}</a>
+                                    <h6><a class="text" href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}</a>
                                     </h6>
                                 </div>
                             </div>
