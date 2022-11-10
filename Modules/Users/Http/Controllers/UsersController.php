@@ -2,6 +2,7 @@
 
 namespace Modules\Users\Http\Controllers;
 
+use App\Models\ApiKeys;
 use App\Models\Categories;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
@@ -65,6 +66,11 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $toast = $this->users->find($id)->delete();
+        // if delete user -> delete api key for user
+        $inf_api = ApiKeys::where('user_id', $id)->first()->id;
+        
+        ApiKeys::find($inf_api)->delete();
+
         if($toast){
             toast('Delete User Successfully!','success','top-right');
         }
