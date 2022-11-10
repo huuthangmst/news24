@@ -223,7 +223,7 @@ class PostsController extends Controller
         //dd($decode);
 
         foreach ($decode as $post) {
-            $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'vien-thong', 'thi-truong');
+            $array = array("trong-nuoc", "chung-khoan", "phim", "gioi-sao", "thi-cu", "bao-mat", 'tai-chinh', 'thi-truong');
             $t = $array[array_rand($array, 1)];
             $id_topic = $this->topics->where('slug', $t)->first()->id;
             $ite = $post;

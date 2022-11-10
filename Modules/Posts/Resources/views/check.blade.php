@@ -162,7 +162,7 @@
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <button onclick="display1()" class="btn btn-secondary" data-toggle-class="btn-primary"
                                             data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="enable" value="1" class="join-btn"> &nbsp; Enable
+                                            <input type="radio" name="enable" value="1" class="join-btn" required> &nbsp; Enable
                                             &nbsp;
                                         </button>
                                         <button onclick="display2()" class="btn btn-primary" data-toggle-class="btn-primary"
@@ -181,7 +181,7 @@
                                     <div class="col-md-6 col-sm-6 ">
                                         <textarea id="ena" name="description_check"
                                             class="form-control"
-                                            required pattern="*"
+                                            required
                                             rows="2"></textarea>
                                     </div>
                                 </div>
