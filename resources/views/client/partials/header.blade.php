@@ -90,7 +90,7 @@
                                             @guest
                                                 @if (Route::has('login'))
                                                 <li class="nav-item">
-                                                    <a class="nav-link text-dark" href="{{ route('login') }}"><i class="bi bi-box-arrow-left text-primary"></i> {{ __('Login') }}</a>
+                                                    <a class="nav-link text-dark" href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right text-primary"></i> {{ __('Login') }}</a>
                                                 </li>
                                                 @endif
 
