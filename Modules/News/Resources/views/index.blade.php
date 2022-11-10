@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="trending-tittle">
-                            <strong>Trending now</strong>
+                            <a href="/"><strong>Trending now</strong></a>
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
                                 <ul id="js-news" class="js-hidden">
