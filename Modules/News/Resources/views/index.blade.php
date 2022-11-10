@@ -43,7 +43,7 @@
                                         <li class="news-item">{{$tech->title}}.
                                         </li>
                                     @endif
-                                    @if ($ent != null)
+                                    @if ($new != null)
                                         <li class="news-item">{{$ent->title}}.
                                         </li>
                                     @endif

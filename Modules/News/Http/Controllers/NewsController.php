@@ -88,7 +88,7 @@ class NewsController extends Controller
         // week
         $now = Carbon::now();
 
-        $post_week= json_decode($this->posts->with('topics')->whereBetween("created_at", [
+        $post_week= json_decode($this->posts->with('topics')->where('enable', 1)->whereBetween("created_at", [
             $now->startOfWeek()->format('Y-m-d'), //This will return date in format like this: 2022-01-10
             $now->endOfWeek()->format('Y-m-d')
             ])->skip(0)->take(8)->get());
