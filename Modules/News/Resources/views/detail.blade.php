@@ -211,7 +211,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
-                                        <img src="https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg"
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
                                             alt="">
                                     </div>
                                     <div class="desc">
@@ -301,7 +301,7 @@
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb">
-                                                                <img src="https://toigingiuvedep.vn/wp-content/uploads/2021/05/hinh-anh-avatar-doremon-cute.png" alt="">
+                                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
                                                             </div>
                                                             <div class="desc">
                                                                 

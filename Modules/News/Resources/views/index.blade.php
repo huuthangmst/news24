@@ -240,7 +240,7 @@
                 <div class="col-lg-4">
                     @foreach ($posts_50data as $f)
                     <div class="section-top-border" data-aos="zoom-in">
-                        <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><h6 class="mb-30">{{ $f->title }}</h6></a>
+                        <a class="" href="{{ route('news.detail', ['slug'=>$f->slug])}}"><h6 class="mb-30">{{ $f->title }}</h6></a>
                         <div class="row">
                             <div class="zoom col-md-5">
                                 <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><img src="{{ $f->feature_image_path }}" alt="" class="img-fluid"></a>
