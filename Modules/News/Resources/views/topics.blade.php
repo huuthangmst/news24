@@ -106,7 +106,7 @@
                     </div>
                 </div> --}}
                 <!-- Trending Bottom -->
-                <div class="trending-bottom container">
+                <div class="trending-bottom ml-2 container">
                     <div class="row">
                         {{-- @foreach ($categories_data->postss as $cate_item)
                         <div class="col-lg-4">
