@@ -123,10 +123,7 @@
                     <!-- Riht content -->
                     <div class="col-lg-4">
                         @foreach ($posts_data as $post)
-                            <div class="trand-right-single d-flex" data-aos="fade-left"
-                            data-aos-anchor="#example-anchor"
-                            data-aos-offset="500"
-                            data-aos-duration="500">
+                            <div class="trand-right-single d-flex" data-aos="zoom-out-left">
                                 <div class="trand-right-img">
                                     <img class="zoom" height="100" width="150" src="{{$post->feature_image_path}}" alt="">
                                 </div>
@@ -242,7 +239,7 @@
                 </div>
                 <div class="col-lg-4">
                     @foreach ($posts_50data as $f)
-                    <div class="section-top-border" data-aos="fade-left">
+                    <div class="section-top-border" data-aos="zoom-in">
                         <a href="{{ route('news.detail', ['slug'=>$f->slug])}}"><h6 class="mb-30">{{ $f->title }}</h6></a>
                         <div class="row">
                             <div class="zoom col-md-5">
