@@ -95,7 +95,7 @@
                                             <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid"></a>
                                         </div>
                                         <div class="col-md-9 mt-sm-20">
-                                            <p>{{$cate_item->description}}</p>
+                                            <p class="text">{{$cate_item->description}}</p>
                                         </div>
                                     </div>
                                 </div>
