@@ -1,6 +1,22 @@
 @extends('client.layouts.client')
 @section('title')
 <title>Categoties</title>
+<style>
+    .res {
+        height: auto;
+        max-height: 100px;
+        max-width: 150px;
+        width: 300px;
+    }
+    @media only screen and (max-width: 600px) {
+        img.res {
+            height: auto;
+            max-height: 150px;
+            
+        }
+    }
+
+</style>
 @endsection
 @section('content')
 <main>
@@ -13,41 +29,51 @@
                     <div class="col-lg-12">
                         {{-- <div class="trending-tittle">
                             <strong>{{ $categories_data->name }}</strong>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="properties__button">
+                            <!--Nav Button  -->
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                        href="#nav-home" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">All</a>
+                                    c
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                        aria-selected="false">Travel</a>
+                                    <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last"
+                                        role="tab" aria-controls="nav-contact" aria-selected="false">Fashion</a>
+                                    <a class="nav-item nav-link" id="nav-Sports" data-toggle="tab" href="#nav-nav-Sport"
+                                        role="tab" aria-controls="nav-contact" aria-selected="false">Sports</a>
+                                    <a class="nav-item nav-link" id="nav-technology" data-toggle="tab"
+                                        href="#nav-techno" role="tab" aria-controls="nav-contact"
+                                        aria-selected="false">Technology</a>
+                                </div>
+                            </nav>
+                            <!--End Nav Button  -->
                         </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="properties__button">
-                                <!--Nav Button  -->                                            
-                                <nav>                                                                     
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                                        c
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Travel</a>
-                                        <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-contact" aria-selected="false">Fashion</a>
-                                        <a class="nav-item nav-link" id="nav-Sports" data-toggle="tab" href="#nav-nav-Sport" role="tab" aria-controls="nav-contact" aria-selected="false">Sports</a>
-                                        <a class="nav-item nav-link" id="nav-technology" data-toggle="tab" href="#nav-techno" role="tab" aria-controls="nav-contact" aria-selected="false">Technology</a>
-                                    </div>
-                                </nav>
-                                <!--End Nav Button  -->
-                            </div>
-                        </div> --}}
-                        <div class="col-lg-3 col-md-3">
-                            <div class="trending-tittle">
-                                <strong>{{ $categories_data->name }}</strong>
-                            </div>
+                    </div> --}}
+                    <div class="col-lg-3 col-md-3">
+                        <div class="trending-tittle">
+                            <strong>{{ $categories_data->name }}</strong>
                         </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="properties__button">
-                                <!--Nav Button  -->                                            
-                                <nav>                                                                     
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        @foreach ($topics_data->topics as $topic_item)
-                                        <a class="nav-item nav-link text-dark" href="{{ route('news.topics', ['slug'=>$topic_item->slug]) }}" role="tab" aria-controls="nav-contact" aria-selected="true">{{ $topic_item->name }}</a>
-                                        @endforeach
-                                        
-                                    </div>
-                                </nav>
-                                <!--End Nav Button  -->
-                            </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="properties__button">
+                            <!--Nav Button  -->
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    @foreach ($topics_data->topics as $topic_item)
+                                    <a class="nav-item nav-link text-dark"
+                                        href="{{ route('news.topics', ['slug'=>$topic_item->slug]) }}" role="tab"
+                                        aria-controls="nav-contact" aria-selected="true">{{ $topic_item->name }}</a>
+                                    @endforeach
+
+                                </div>
+                            </nav>
+                            <!--End Nav Button  -->
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -72,50 +98,53 @@
                                     <div class="row">
                                         <div class="trend-bottom-cap">
                                             <h4><a href="details.html">{{$cate_item->title}}</a></h4>
-                                        </div>
-                                        <div>
-                                            <h6><a href="details.html">{{$cate_item->description}}</a></h6>
-                                        </div>
-                                    </div>
-                                    <div class="trend-bottom-img mb-30">
-                                        <img src="{{$cate_item->feature_image_path}}" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        @endforeach --}}
-                        @foreach ( $categories_data->postss as $cate_item )
-                            @if ($cate_item->enable == 1)
-                                <div class="section-top-border">
-                                    <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><h3 class="mb-30">{{$cate_item->title}}</h3></a>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="col-md-9 mt-sm-20">
-                                            <p class="text">{{$cate_item->description}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-                        
+                    </div>
+                    <div>
+                        <h6><a href="details.html">{{$cate_item->description}}</a></h6>
                     </div>
                 </div>
+                <div class="trend-bottom-img mb-30">
+                    <img src="{{$cate_item->feature_image_path}}" alt="">
+                </div>
             </div>
-            <!-- Riht content -->
-            {{-- <div class="col-lg-4">
+
+        </div>
+    </div>
+
+    @endforeach --}}
+    @foreach ( $categories_data->postss as $cate_item )
+    @if ($cate_item->enable == 1)
+    <div class="section-top-border" data-aos="zoom-in">
+        <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}">
+            <h5 class="mb-30">{{$cate_item->title}}</h5>
+        </a>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img
+                        src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid res"></a>
+            </div>
+            <div class="col-md-9 mt-sm-20">
+                <p class="text">{{$cate_item->description}}</p>
+            </div>
+        </div>
+    </div>
+    @endif
+    @endforeach
+
+    </div>
+    </div>
+    </div>
+    <!-- Riht content -->
+    {{-- <div class="col-lg-4">
                         @foreach ($posts_data as $post)
                             <div class="trand-right-single d-flex">
                                 <div class="trand-right-img">
                                     <img height="100" width="100" src="{{$post->feature_image_path}}" alt="">
-        </div>
-        <div class="trand-right-cap">
-            <span class="text-danger">News</span>
-            <h6><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}</a></h6>
-        </div>
+    </div>
+    <div class="trand-right-cap">
+        <span class="text-danger">News</span>
+        <h6><a href="{{ route('news.detail', ['slug'=>$post->slug])}}">{{$post->title}}</a></h6>
+    </div>
     </div>
     @endforeach
 
@@ -126,7 +155,7 @@
     </div>
 
     <!--Start pagination -->
-    <div class="pagination-area pb-45 text-center">
+    {{-- <div class="pagination-area pb-45 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -146,7 +175,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End pagination  -->
 </main>
 @endsection

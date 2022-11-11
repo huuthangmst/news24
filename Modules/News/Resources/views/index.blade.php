@@ -19,6 +19,16 @@
             height: auto;
             max-height: 210px;
         }
+        .responsive_trending {
+            height: auto;
+            max-height: 500px;
+        }
+        .responsive_weekly_news {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            max-height: 140px;
+        }
     </style>
 @endsection
 @section('content')
@@ -63,7 +73,7 @@
                         <div class="trending-top mb-30">
                             <div class="trend-top-img" data-aos="fade-down">
                                 @if ($first_post != null)
-                                    <a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}"><img src="{{$first_post->feature_image_path}}" alt=""></a>
+                                    <a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}"><img src="{{$first_post->feature_image_path}}" class="responsive_trending" alt=""></a>
                                     <div class="trend-top-cap">
                                         <span>For you!</span>
                                         <h2><a href="{{ route('news.detail', ['slug'=>$first_post->slug])}}">{{$first_post->title}}</a></h2>
@@ -125,7 +135,7 @@
                         @foreach ($posts_data as $post)
                             <div class="trand-right-single d-flex" data-aos="zoom-out-left">
                                 <div class="trand-right-img">
-                                    <img class="zoom" height="100" width="150" src="{{$post->feature_image_path}}" alt="">
+                                    <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><img class="zoom" height="100" width="150" src="{{$post->feature_image_path}}" alt=""></a>
                                 </div>
                                 <div class="trand-right-cap">
                                     <span class="text-danger">News</span><i class="	fas fa-eye text-secondary"> {{ count($post->post_view) }}</i>
@@ -295,7 +305,7 @@
                             @foreach ($post_week as $week)
                                 <div class="weekly2-single">
                                     <div class="weekly2-img">
-                                        <a href="{{ route('news.detail', ['slug'=>$week->slug])}}"><img src="{{ $week->feature_image_path }}" alt=""></a>
+                                        <a href="{{ route('news.detail', ['slug'=>$week->slug])}}"><img src="{{ $week->feature_image_path }}" class="responsive_weekly_news" alt=""></a>
                                     </div>
                                     <div class="weekly2-caption">
                                         <span class="color1">{{ $week->topics->name }}</span>

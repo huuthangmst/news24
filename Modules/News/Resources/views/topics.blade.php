@@ -30,6 +30,19 @@
             background-position: 200% center;
         }
     }
+    .res {
+        height: auto;
+        max-height: 100px;
+        max-width: 150px;
+        width: 300px;
+    }
+    @media only screen and (max-width: 600px) {
+        img.res {
+            height: auto;
+            max-height: 150px;
+            
+        }
+    }
 </style>
 @endsection
 @section('content')
@@ -131,11 +144,11 @@
                         @endforeach --}}
                         @foreach ( $categories_data->postss as $cate_item )
                             @if ($cate_item->enable == 1)
-                                <div class="section-top-border">
-                                    <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><h3 class="mb-30">{{$cate_item->title}}</h3></a>
+                                <div class="section-top-border" data-aos="zoom-in">
+                                    <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><h4 class="mb-30">{{$cate_item->title}}</h4></a>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid"></a>
+                                            <a href="{{ route('news.detail', ['slug'=>$cate_item->slug])}}"><img src="{{$cate_item->feature_image_path}}" alt="" class="img-fluid res"></a>
                                         </div>
                                         <div class="col-md-9 mt-sm-20">
                                             <p class="text">{{$cate_item->description}}</p>
@@ -169,7 +182,7 @@
     </div>
 
     <!--Start pagination -->
-    <div class="pagination-area pb-45 text-center">
+    {{-- <div class="pagination-area pb-45 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -189,7 +202,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End pagination  -->
 </main>
 @endsection

@@ -61,7 +61,10 @@
             width: %;
             height: auto;
         }
-        
+        .res {
+            height: auto;
+            max-height: 80px;
+        }
 
     </style>
     <!-- About US Start -->
@@ -388,7 +391,7 @@
                             @foreach ($posts_data as $post)
                             <div class="trand-right-single d-flex">
                                 <div class="trand-right-img">
-                                    <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><img class="zoom" height="100"
+                                    <a href="{{ route('news.detail', ['slug'=>$post->slug])}}"><img class="zoom res" height="100"
                                             width="130" src="{{$post->feature_image_path}}" alt=""></a>
                                 </div><span>&emsp;</span>
                                 <div class="trand-right-cap">

@@ -110,6 +110,9 @@
                 opacity: 0;
             }
         }
+        img{
+            object-fit: cover;
+        }
     </style>
     
 

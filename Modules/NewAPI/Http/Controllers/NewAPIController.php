@@ -208,16 +208,17 @@ class NewAPIController extends Controller
         try{
             // check key
             $checkKey = new CheckApiKey($request);
-            $checkResult = $checkKey->ckeckApiKey($this->apikey);
-
-            // find id user with api key
-            $id_u = json_decode($this->apikey->where('apiKey', $request->apiKey)->first());
-
-            // check id post for user || find post with id for user
-            $che = json_decode(Posts::where('user_id', $id_u->user_id)->where('id', $id)->get());
+            $checkResult = $checkKey->ckeckApiKey($this->apikey);            
 
             // if apiKey not exits in database
             if($checkResult == true){
+                
+                // find id user with api key
+                $id_u = json_decode($this->apikey->where('apiKey', $request->apiKey)->first());
+                
+                // check id post for user || find post with id for user
+                $che = json_decode(Posts::where('user_id', $id_u->user_id)->where('id', $id)->get());
+
                 // check id
                 $kq = $this->findId($id);
 
