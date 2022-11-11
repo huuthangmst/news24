@@ -34,7 +34,7 @@
         height: auto;
         max-height: 100px;
         max-width: 150px;
-        width: 300px;
+        width: 100%;
     }
     @media only screen and (max-width: 600px) {
         img.res {
