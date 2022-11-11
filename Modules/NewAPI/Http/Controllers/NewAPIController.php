@@ -138,42 +138,52 @@ class NewAPIController extends Controller
             // find id user with api key
             $id = json_decode($this->apikey->where('apiKey', $request->apiKey)->first());
             // dd($id);
+            // find topic
 
             if($checkResult == true){
-                $dataPostCreate = [
-                    'title' => $request->title,
-                    'description' => $request->description,
-                    'content' => $request->content,
-                    'topic_id' => $request->topic_id,
-                    'post_type' => 0,
-                    'user_id' => $id->user_id,
-                    'feature_image_path'=>$request->feature_image_path,
-                    'feature_image_name'=>null,
-                    'enable' => 0,
-                    'slug' => Str::slug($request->title)
-                ];
+                $id_to = json_decode(Topics::where('id', $request->topic_id)->get());
+                if($id_to != null){
+                    $dataPostCreate = [
+                        'title' => $request->title,
+                        'description' => $request->description,
+                        'content' => $request->content,
+                        'topic_id' => $request->topic_id,
+                        'post_type' => 0,
+                        'user_id' => $id->user_id,
+                        'feature_image_path'=>$request->feature_image_path,
+                        'feature_image_name'=>null,
+                        'enable' => 0,
+                        'slug' => Str::slug($request->title)
+                    ];
+                    
+                    // create post in database
+                    $this->posts->create($dataPostCreate);
                 
-                // create post in database
-                $this->posts->create($dataPostCreate);
+                    // get id post
+                    $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
+                    // return response()->json($id_post);
+                    $data_check = [
+                        'post_id'=>$id_post,
+                        'description_check'=>null,
+                        'enable'=>1
+                    ];
+                    
+                    // check post
+                    CheckPosts::create($data_check);
             
-                // get id post
-                $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
-                // return response()->json($id_post);
-                $data_check = [
-                    'post_id'=>$id_post,
-                    'description_check'=>null,
-                    'enable'=>1
-                ];
+                    return response()->json([
+                        'status'=>'success',
+                        'statusCode'=>200,
+                        'message'=>'Create post successfully!',
+                        'data'=>Posts::where('title', $request->title)->select(Posts::raw('id, title, description, content, feature_image_path'))->get()
+                    ], 200);
+                }
+                else{
+                    return response()->json([
+                        ['message'=>'Topic is invalid or incorrect', 'code'=>'Invalid', 'status'=>'error']
+                    ], 404);
+                }
                 
-                // check post
-                CheckPosts::create($data_check);
-        
-                return response()->json([
-                    'status'=>'success',
-                    'statusCode'=>200,
-                    'message'=>'Create post successfully!',
-                    'data'=>Posts::where('title', $request->title)->select(Posts::raw('title, description, content, feature_image_path'))->get()
-                ], 200);
             }
             else{
                 return response()->json([
