@@ -158,7 +158,7 @@ class NewAPIController extends Controller
             
                 // get id post
                 $id_post = json_decode($this->posts->where('title', $request->title)->first()->id);
-                //dd($id_post);
+                // return response()->json($id_post);
                 $data_check = [
                     'post_id'=>$id_post,
                     'description_check'=>null,
@@ -166,7 +166,7 @@ class NewAPIController extends Controller
                 ];
                 
                 // check post
-                $this->check_post->create($data_check);
+                CheckPosts::create($data_check);
         
                 return response()->json([
                     'status'=>'success',

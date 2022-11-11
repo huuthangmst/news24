@@ -187,6 +187,9 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
+        // find id check posts
+        $id_cp = json_decode($this->check_post->where('post_id', $id)->first()->id);
+        $this->check_post->find($id_cp)->delete();
         $a = $this->posts->find($id)->delete();
         if ($a) {
             toast('Deleted Successfully!', 'success', 'top-right');

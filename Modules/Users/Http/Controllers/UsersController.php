@@ -68,6 +68,8 @@ class UsersController extends Controller
         $toast = $this->users->find($id)->delete();
         // if delete user -> delete api key for user
         $inf_api = ApiKeys::where('user_id', $id)->first()->id;
+        // update check post when delete user
+        
         
         ApiKeys::find($inf_api)->delete();
 
